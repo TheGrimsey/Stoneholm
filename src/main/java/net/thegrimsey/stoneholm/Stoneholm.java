@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,7 +25,7 @@ public class Stoneholm implements ModInitializer {
 
 						// Add our structure to all biomes including other modded biomes.
 						// You can filter to certain biomes based on stuff like temperature, scale, precipitation, mod id.
-						BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.DESERT, Biome.Category.JUNGLE, Biome.Category.SWAMP, Biome.Category.FOREST).and(BiomeSelectors.foundInOverworld()),
+						BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, BiomeKeys.JUNGLE, BiomeKeys.TALL_BIRCH_FOREST, BiomeKeys.SAVANNA, BiomeKeys.PLAINS, BiomeKeys.FLOWER_FOREST, BiomeKeys.TAIGA),
 
 						// context is basically the biome itself. This is where you do the changes to the biome.
 						// Here, we will add our ConfiguredStructureFeature to the biome.

@@ -1,12 +1,11 @@
 {
-  "name": "stoneholm:start_pool",
-  "fallback": "stoneholm:end",
-
+  "name": "stoneholm:end",
+  "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
-        "location": "stoneholm:entrance",
+        "location": "stoneholm:end",
         "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

@@ -1,12 +1,21 @@
 {
   "name": "stoneholm:stairs",
-  "fallback": "minecraft:empty",
+  "fallback": "stoneholm:end",
   "elements": [
     {
       "weight": 1,
       "element": {
         "location": "stoneholm:stairs/stairs_short",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:stairs/stairs_medium",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

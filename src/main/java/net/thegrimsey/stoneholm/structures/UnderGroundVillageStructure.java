@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -45,9 +46,12 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
 
             BlockPos blockpos = new BlockPos(x, 0, z);
 
+            if(chunkGenerator.getHeightOnGround(x,z, Heightmap.Type.WORLD_SURFACE_WG) > chunkGenerator.getSeaLevel() + 8)
+                return;
+
             StructurePoolBasedGenerator.method_30419(registryManager,
                     new StructurePoolFeatureConfig(
-                            () -> registryManager.get(Registry.TEMPLATE_POOL_WORLDGEN).get(new Identifier(Stoneholm.MODID, "start_pool")), 10),
+                            () -> registryManager.get(Registry.TEMPLATE_POOL_WORLDGEN).get(new Identifier(Stoneholm.MODID, "start_pool")), 8),
                     PoolStructurePiece::new, chunkGenerator, manager, blockpos, this.children, this.random, false, true);
 
             this.setBoundingBoxFromChildren();

@@ -1,12 +1,12 @@
 {
   "name": "stoneholm:hallways",
-  "fallback": "minecraft:empty",
+  "fallback": "stoneholm:end",
   "elements": [
     {
       "weight": 1,
       "element": {
         "location": "stoneholm:hallways/hallway_01",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -15,7 +15,7 @@
       "weight": 4,
       "element": {
         "location": "stoneholm:hallways/hallway_t",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -24,7 +24,7 @@
       "weight": 1,
       "element": {
         "location": "stoneholm:hallways/hallway_x",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -33,6 +33,15 @@
       "weight": 3,
       "element": {
         "location": "stoneholm:hallways/corner",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:hallways/stair_01",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

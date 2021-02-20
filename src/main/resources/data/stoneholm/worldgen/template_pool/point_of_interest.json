@@ -1,12 +1,12 @@
 {
   "name": "stoneholm:point_of_interest",
-  "fallback": "minecraft:empty",
+  "fallback": "stoneholm:end",
   "elements": [
     {
       "weight": 50,
       "element": {
         "location": "stoneholm:poi/carpet_room",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -15,16 +15,25 @@
       "weight": 200,
       "element": {
         "location": "stoneholm:poi/cell_block_4x",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
     },
     {
-      "weight": 5,
+      "weight": 250,
+      "element": {
+        "location": "stoneholm:poi/bedroom",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 10,
       "element": {
         "location": "stoneholm:poi/bell_01",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -33,7 +42,7 @@
       "weight": 80,
       "element": {
         "location": "stoneholm:poi/farm_01",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -42,7 +51,43 @@
       "weight": 80,
       "element": {
         "location": "stoneholm:poi/library_01",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 80,
+      "element": {
+        "location": "stoneholm:poi/mason_01",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 60,
+      "element": {
+        "location": "stoneholm:poi/cleric_01",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 80,
+      "element": {
+        "location": "stoneholm:poi/armorsmith_01",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 70,
+      "element": {
+        "location": "stoneholm:poi/fisher_01",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
