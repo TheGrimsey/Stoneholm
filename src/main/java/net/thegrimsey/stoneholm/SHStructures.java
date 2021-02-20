@@ -16,7 +16,7 @@ public class SHStructures
     public static void setupAndRegisterStructureFeatures()
     {
         FabricStructureBuilder.create(new Identifier(Stoneholm.MODID, "underground_village"), UNDERGROUND_VILLAGE)
-                .step(GenerationStep.Feature.UNDERGROUND_DECORATION)
+                .step(GenerationStep.Feature.TOP_LAYER_MODIFICATION)
                 .defaultConfig(new StructureConfig(10, 5, 20210218))
                 .superflatFeature(UNDERGROUND_VILLAGE.configure(FeatureConfig.DEFAULT))
                 .register();
