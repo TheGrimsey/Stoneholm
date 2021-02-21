@@ -1,0 +1,39 @@
+{
+  "processors": [
+    {
+      "rules": [
+        {
+          "output_state": {
+            "Name": "minecraft:netherrack"
+          },
+          "input_predicate": {
+            "block": "minecraft:stone_bricks",
+            "probability": 0.45,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
+        {
+          "output_state": {
+            "Properties": {
+              "hanging": "true",
+              "waterlogged": "false"
+            },
+            "Name": "minecraft:soul_lantern"
+          },
+          "input_predicate": {
+            "block": "minecraft:lantern",
+            "probability": 0.25,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        }
+      ],
+      "processor_type": "minecraft:rule"
+    }
+  ]
+}

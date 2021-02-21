@@ -5,14 +5,10 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class Stoneholm implements ModInitializer {
 	public static final String MODID = "stoneholm";
-	public static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public void onInitialize() {
@@ -32,7 +28,5 @@ public class Stoneholm implements ModInitializer {
 						context -> {
 							context.getGenerationSettings().addBuiltInStructure(SHConfiguredStructures.CONFIGURED_UNDERGROUND_VILLAGE);
 						});
-
-		System.out.println("Stoneholm initialized!");
 	}
 }

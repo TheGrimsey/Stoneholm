@@ -84,10 +84,28 @@
       }
     },
     {
+      "weight": 80,
+      "element": {
+        "location": "stoneholm:poi/toolsmith_01",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
       "weight": 70,
       "element": {
         "location": "stoneholm:poi/fisher_01",
         "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 45,
+      "element": {
+        "location": "stoneholm:poi/nether_portal",
+        "processors": "stoneholm:netherer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
