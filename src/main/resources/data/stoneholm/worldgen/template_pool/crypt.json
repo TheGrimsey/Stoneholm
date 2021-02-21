@@ -1,0 +1,15 @@
+{
+  "name": "stoneholm:crypt",
+  "fallback": "stoneholm:end",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:poi/crypt",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

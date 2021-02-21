@@ -1,0 +1,24 @@
+{
+  "name": "stoneholm:crypt_stairs",
+  "fallback": "stoneholm:end",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:poi/crypt_stairs",
+        "processors": "stoneholm:crypter",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "stoneholm:end",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

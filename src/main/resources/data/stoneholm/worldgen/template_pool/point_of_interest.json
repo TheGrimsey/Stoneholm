@@ -109,6 +109,15 @@
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
+    },
+    {
+      "weight": 100,
+      "element": {
+        "location": "stoneholm:poi/crypt",
+        "processors": "stoneholm:crypter",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
     }
   ]
 }
