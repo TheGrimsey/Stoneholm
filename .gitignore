@@ -30,4 +30,7 @@ bin/
 
 # fabric
 
-run/
+run/*
+!run/saves/
+run/saves/*
+!run/saves/Buildworld/
