@@ -8,7 +8,7 @@
           },
           "input_predicate": {
             "block": "minecraft:barrel",
-            "probability": 0.9,
+            "probability": 0.85,
             "predicate_type": "minecraft:random_block_match"
           },
           "location_predicate": {

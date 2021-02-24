@@ -40,7 +40,7 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, int chunkX, int chunkZ, Biome biome, DefaultFeatureConfig config)
         {
-            // Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
+            // Turns the chunk coordinates into actual coordinates.
             int x = chunkX * 16;
             int z = chunkZ * 16;
 
