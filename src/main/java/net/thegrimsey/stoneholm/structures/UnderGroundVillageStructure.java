@@ -51,7 +51,7 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
 
             StructurePoolBasedGenerator.method_30419(registryManager,
                     new StructurePoolFeatureConfig(
-                            () -> registryManager.get(Registry.TEMPLATE_POOL_WORLDGEN).get(new Identifier(Stoneholm.MODID, "start_pool")), 8),
+                            () -> registryManager.get(Registry.TEMPLATE_POOL_WORLDGEN).get(new Identifier(Stoneholm.MODID, "start_pool")), 12),
                     PoolStructurePiece::new, chunkGenerator, manager, blockpos, this.children, this.random, false, true);
 
             this.setBoundingBoxFromChildren();
