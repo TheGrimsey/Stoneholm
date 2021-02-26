@@ -3,10 +3,19 @@
   "fallback": "stoneholm:end",
   "elements": [
     {
-      "weight": 1,
+      "weight": 10,
       "element": {
         "location": "stoneholm:poi/crypt",
         "processors": "stoneholm:crypter",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:abandoned_hallways/entry_01", 
+        "processors": "stoneholm:super_decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
