@@ -40,18 +40,23 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, int chunkX, int chunkZ, Biome biome, DefaultFeatureConfig config)
         {
+            // TODO Grab from config.
+            int size = 12;
+
             // Turns the chunk coordinates into actual coordinates.
             int x = chunkX * 16;
             int z = chunkZ * 16;
 
+            // Position, we don't care about Y as we will just be placed on top.
             BlockPos blockpos = new BlockPos(x, 0, z);
 
+            // Ensure that we aren't too high up. This helps alleviate issues with things generating up above ground.
             if(chunkGenerator.getHeightOnGround(x,z, Heightmap.Type.WORLD_SURFACE_WG) > chunkGenerator.getSeaLevel() + 8)
                 return;
 
             StructurePoolBasedGenerator.method_30419(registryManager,
                     new StructurePoolFeatureConfig(
-                            () -> registryManager.get(Registry.TEMPLATE_POOL_WORLDGEN).get(new Identifier(Stoneholm.MODID, "start_pool")), 12),
+                            () -> registryManager.get(Registry.TEMPLATE_POOL_WORLDGEN).get(new Identifier(Stoneholm.MODID, "start_pool")), size),
                     PoolStructurePiece::new, chunkGenerator, manager, blockpos, this.children, this.random, false, true);
 
             this.setBoundingBoxFromChildren();

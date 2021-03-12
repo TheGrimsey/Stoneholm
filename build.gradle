@@ -16,6 +16,10 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+	maven {
+		name = "JitPack"
+		url = "https://jitpack.io"
+	}
 }
 
 dependencies {
@@ -29,6 +33,9 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
+	modRuntime ("com.github.SuperCoder7979:databreaker:715b589e557d82ceafa78eab45cd70b3beea37c6") {
+		exclude module: "fabric-loader"
+	}
 }
 
 processResources {

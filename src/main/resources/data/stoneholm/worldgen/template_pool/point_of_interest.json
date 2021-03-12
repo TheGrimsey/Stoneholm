@@ -3,16 +3,7 @@
   "fallback": "stoneholm:end",
   "elements": [
     {
-      "weight": 50,
-      "element": {
-        "location": "stoneholm:poi/carpet_room",
-        "processors": "stoneholm:decayer",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 200,
+      "weight": 300,
       "element": {
         "location": "stoneholm:poi/cell_block_4x",
         "processors": "stoneholm:decayer",
@@ -21,7 +12,7 @@
       }
     },
     {
-      "weight": 250,
+      "weight": 300,
       "element": {
         "location": "stoneholm:poi/bedroom",
         "processors": "stoneholm:decayer",
@@ -29,10 +20,11 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+
     {
-      "weight": 10,
+      "weight": 80,
       "element": {
-        "location": "stoneholm:poi/bell_01",
+        "location": "stoneholm:poi/carpet_room",
         "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -66,7 +58,7 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 80,
       "element": {
         "location": "stoneholm:poi/cleric_01",
         "processors": "stoneholm:decayer",
@@ -93,7 +85,7 @@
       }
     },
     {
-      "weight": 70,
+      "weight": 80,
       "element": {
         "location": "stoneholm:poi/fisher_01",
         "processors": "stoneholm:decayer",
@@ -101,8 +93,18 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+    
     {
       "weight": 10,
+      "element": {
+        "location": "stoneholm:poi/bell_01",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 5,
       "element": {
         "location": "stoneholm:poi/nether_portal",
         "processors": "stoneholm:netherer",
@@ -111,9 +113,19 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 30,
       "element": {
         "location": "stoneholm:poi/crypt",
+        "processors": "stoneholm:crypter",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:poi/treasures/king_mooshroom",
         "processors": "stoneholm:crypter",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -122,22 +134,10 @@
     {
       "weight": 1,
       "element": {
-        "element_type": "minecraft:list_pool_element",
+        "location": "stoneholm:poi/treasures/forbidden_knowledge",
+        "processors": "stoneholm:crypter",
         "projection": "rigid",
-        "elements": [
-          {
-            "element_type": "minecraft:single_pool_element",
-            "projection": "rigid",
-            "location": "stoneholm:poi/treasures/king_mooshroom",
-            "processors": "stoneholm:crypter"
-          },
-          {
-            "element_type": "minecraft:single_pool_element",
-            "projection": "rigid",
-            "location": "stoneholm:poi/treasures/king_mooshroom",
-            "processors": "stoneholm:crypter"
-          }
-        ]
+        "element_type": "minecraft:single_pool_element"
       }
     }
   ]

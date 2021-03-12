@@ -11,6 +11,6 @@ public class SHConfiguredStructures {
 
     public static void registerConfiguredStructures() {
         Registry<ConfiguredStructureFeature<?, ?>> registry = BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE;
-        Registry.register(registry, new Identifier(Stoneholm.MODID, "configured_underground_village"), CONFIGURED_UNDERGROUND_VILLAGE);
+        Registry.register(registry, Stoneholm.CONFIGURED_UNDERGROUNDVILLAGE_IDENTIFIER, CONFIGURED_UNDERGROUND_VILLAGE);
     }
 }
