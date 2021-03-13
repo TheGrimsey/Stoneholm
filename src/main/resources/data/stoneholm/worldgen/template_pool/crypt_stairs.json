@@ -12,9 +12,9 @@
       }
     },
     {
-      "weight": 45,
+      "weight": 5,
       "element": {
-        "location": "stoneholm:end", 
+        "location": "stoneholm:poi/crypt_end", 
         "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

@@ -1,0 +1,286 @@
+{
+    "processors": [
+      {
+        "rules": [
+          {
+            "output_state": {
+              "Name": "minecraft:mossy_cobblestone"
+            },
+            "input_predicate": {
+              "block": "minecraft:stone_bricks",
+              "probability": 0.005,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:cobblestone"
+            },
+            "input_predicate": {
+              "block": "minecraft:stone_bricks",
+              "probability": 0.005,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:cracked_stone_bricks"
+            },
+            "input_predicate": {
+              "block": "minecraft:stone_bricks",
+              "probability": 0.04,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:mossy_stone_bricks"
+            },
+            "input_predicate": {
+              "block": "minecraft:stone_bricks",
+              "probability": 0.06,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          
+          {
+            "output_state": {
+              "Name": "minecraft:dirt"
+            },
+            "input_predicate": {
+              "block": "minecraft:grass_block",
+              "probability": 0.04,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:coarse_dirt"
+            },
+            "input_predicate": {
+              "block": "minecraft:grass_block",
+              "probability": 0.04,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Properties": {
+                "snowy": "false"
+              },
+              "Name": "minecraft:podzol"
+            },
+            "input_predicate": {
+              "block": "minecraft:grass_block",
+              "probability": 0.02,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+
+          {
+            "output_state": {
+              "Name": "minecraft:grass"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.35,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:dandelion"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:poppy"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:blue_orchid"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:allium"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:azure_bluet"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:red_tulip"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:orange_tulip"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:white_tulip"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:pink_tulip"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:oxeye_daisy"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:cornflower"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:lily_of_the_valley"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "probability": 0.03,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:air"
+            },
+            "input_predicate": {
+              "block": "minecraft:white_carpet",
+              "predicate_type": "minecraft:block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          }
+        ],
+        "processor_type": "minecraft:rule"
+      }
+    ]
+  }

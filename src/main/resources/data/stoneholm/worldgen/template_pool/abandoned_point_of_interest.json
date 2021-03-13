@@ -67,7 +67,7 @@
     },
 
     {
-      "weight": 3,
+      "weight": 2,
       "element": {
         "location": "stoneholm:poi/treasures/king_mooshroom",
         "processors": "stoneholm:crypter",
@@ -76,7 +76,7 @@
       }
     },
     {
-      "weight": 3,
+      "weight": 2,
       "element": {
         "location": "stoneholm:poi/treasures/forbidden_knowledge",
         "processors": "stoneholm:crypter",

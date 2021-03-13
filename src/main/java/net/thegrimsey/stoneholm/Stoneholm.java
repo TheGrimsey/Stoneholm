@@ -1,5 +1,7 @@
 package net.thegrimsey.stoneholm;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
@@ -14,9 +16,16 @@ public class Stoneholm implements ModInitializer {
 	public static final String MODID = "stoneholm";
 	public static final Identifier UNDERGROUNDVILLAGE_IDENTIFIER = new Identifier(Stoneholm.MODID, "underground_village");
 	public static final Identifier CONFIGURED_UNDERGROUNDVILLAGE_IDENTIFIER = new Identifier(Stoneholm.MODID, "configured_underground_village");
+	public static SHConfig CONFIG;
 
 	@Override
 	public void onInitialize() {
+		// Register config file.
+		AutoConfig.register(SHConfig.class, Toml4jConfigSerializer::new);
+		// Get config.
+		CONFIG = AutoConfig.getConfigHolder(SHConfig.class).getConfig();
+
+		// Register structures & configured structures.
 		SHStructures.registerStructureFeatures();
 		SHConfiguredStructures.registerConfiguredStructures();
 
@@ -24,11 +33,10 @@ public class Stoneholm implements ModInitializer {
 		Predicate<BiomeSelectionContext> biomes = BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, BiomeKeys.JUNGLE, BiomeKeys.TALL_BIRCH_FOREST, BiomeKeys.TAIGA, BiomeKeys.FLOWER_FOREST, BiomeKeys.GIANT_TREE_TAIGA, BiomeKeys.GIANT_SPRUCE_TAIGA,
 				BiomeKeys.SAVANNA, BiomeKeys.PLAINS, BiomeKeys.SNOWY_TUNDRA);
 
+		// Add structures to biomes.
 		BiomeModifications.create(UNDERGROUNDVILLAGE_IDENTIFIER)
 				.add(ModificationPhase.ADDITIONS,
 						biomes,
-						context -> {
-							context.getGenerationSettings().addBuiltInStructure(SHConfiguredStructures.CONFIGURED_UNDERGROUND_VILLAGE);
-						});
+						context -> context.getGenerationSettings().addBuiltInStructure(SHConfiguredStructures.CONFIGURED_UNDERGROUND_VILLAGE));
 	}
 }

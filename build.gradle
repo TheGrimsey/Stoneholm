@@ -11,15 +11,14 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-    // Add repositories to retrieve artifacts from in here.
-    // You should only use this when depending on other mods because
-    // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-    // for more information about repositories.
+	// DataBreaker
 	maven {
 		name = "JitPack"
 		url = "https://jitpack.io"
 	}
+
+	// Cloth Config
+    maven { url "https://maven.shedaniel.me/" }
 }
 
 dependencies {
@@ -31,11 +30,15 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-	// You may need to force-disable transitiveness on them.
+	// DataBreaker
 	modRuntime ("com.github.SuperCoder7979:databreaker:715b589e557d82ceafa78eab45cd70b3beea37c6") {
 		exclude module: "fabric-loader"
 	}
+
+	// Cloth COnfig
+    modApi("me.shedaniel.cloth:cloth-config-fabric:4.11.15") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
 }
 
 processResources {
