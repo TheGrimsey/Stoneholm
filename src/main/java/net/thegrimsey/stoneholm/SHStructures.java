@@ -15,11 +15,7 @@ public class SHStructures
 
     public static void registerStructureFeatures()
     {
-        /*
-         *   Because of L23 in StructureConfig I don't believe spacing & separation to be correctly labeled. I am not sure what they actually mean though, it would require some testing.
-         *   I retrieved that information from this guide though:
-         *   https://github.com/TelepathicGrunt/StructureTutorialMod/blob/1.16.3-Fabric-Jigsaw/src/main/java/com/telepathicgrunt/structure_tutorial/STStructures.java#L39
-         */
+        // Create structure config using config values.
         StructureConfig structureConfig = new StructureConfig(Stoneholm.CONFIG.VILLAGE_SPACING, Stoneholm.CONFIG.VILLAGE_SEPARATION, Stoneholm.CONFIG.VILLAGE_SALT);
 
         FabricStructureBuilder.create(Stoneholm.UNDERGROUNDVILLAGE_IDENTIFIER, UNDERGROUND_VILLAGE)
