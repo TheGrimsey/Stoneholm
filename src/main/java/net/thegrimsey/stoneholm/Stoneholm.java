@@ -18,6 +18,8 @@ public class Stoneholm implements ModInitializer {
 	public static final Identifier CONFIGURED_UNDERGROUNDVILLAGE_IDENTIFIER = new Identifier(Stoneholm.MODID, "configured_underground_village");
 	public static SHConfig CONFIG;
 
+	// Suppress deprecation warnings from Fabric's Biome API.
+	@SuppressWarnings ("deprecation")
 	@Override
 	public void onInitialize() {
 		// Register config file.

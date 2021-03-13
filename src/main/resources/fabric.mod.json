@@ -6,14 +6,14 @@
   "name": "Stoneholm",
   "description": "Underground Villages.",
   "authors": [
-    "Me!"
+    "TheGrimsey"
   ],
   "contact": {
     "homepage": "https://thegrimsey.net/",
     "sources": "https://github.com/TheGrimsey/Stoneholm/"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
