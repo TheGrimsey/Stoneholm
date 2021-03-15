@@ -9,12 +9,13 @@
     "TheGrimsey"
   ],
   "contact": {
-    "homepage": "https://thegrimsey.net/",
+    "homepage": "https://github.com/TheGrimsey/Stoneholm/",
+    "issues": "https://github.com/TheGrimsey/Stoneholm/issues",
     "sources": "https://github.com/TheGrimsey/Stoneholm/"
   },
 
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/stoneholm/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -29,6 +30,7 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.x"
+    "minecraft": "1.16.x",
+    "cloth-config2": "*"
   }
 }

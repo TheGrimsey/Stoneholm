@@ -33,7 +33,7 @@ public class Stoneholm implements ModInitializer {
 
 		// Set up Biomes to spawn in. We only spawn in relatively flat biomes to try and stop the issue of "Underground Village is not underground because we are in a hill and it went out of the side of it."
 		Predicate<BiomeSelectionContext> biomes = BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, BiomeKeys.JUNGLE, BiomeKeys.TALL_BIRCH_FOREST, BiomeKeys.TAIGA, BiomeKeys.FLOWER_FOREST, BiomeKeys.GIANT_TREE_TAIGA, BiomeKeys.GIANT_SPRUCE_TAIGA,
-				BiomeKeys.SAVANNA, BiomeKeys.PLAINS, BiomeKeys.SNOWY_TUNDRA);
+				BiomeKeys.SAVANNA, BiomeKeys.PLAINS, BiomeKeys.SNOWY_TUNDRA, BiomeKeys.BADLANDS);
 
 		// Add structures to biomes.
 		BiomeModifications.create(UNDERGROUNDVILLAGE_IDENTIFIER)

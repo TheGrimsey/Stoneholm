@@ -121,6 +121,15 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/llama_stable",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
 
     {
       "weight": 1,
