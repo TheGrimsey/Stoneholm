@@ -70,7 +70,7 @@
       "weight": 2,
       "element": {
         "location": "stoneholm:poi/treasures/king_mooshroom",
-        "processors": "stoneholm:crypter",
+        "processors": "stoneholm:super_decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -79,7 +79,25 @@
       "weight": 2,
       "element": {
         "location": "stoneholm:poi/treasures/forbidden_knowledge",
-        "processors": "stoneholm:crypter",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:poi/treasures/emerald_vault",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:poi/treasures/the_button_room",
+        "processors": "stoneholm:super_decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
