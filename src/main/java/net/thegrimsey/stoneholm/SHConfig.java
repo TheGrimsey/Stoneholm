@@ -9,5 +9,7 @@ public class SHConfig implements ConfigData {
     public int VILLAGE_SPACING = 15;
     public int VILLAGE_SEPARATION = 5;
 
+    // These you should generally not change as a player.
     public int VILLAGE_SALT = 8698777;
+    public int VILLAGE_MAX_DISTANCE_ABOVE_SEALEVEL = 12;
 }

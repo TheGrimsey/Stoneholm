@@ -8,10 +8,13 @@ import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.BiomeSource;
+import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
@@ -20,6 +23,8 @@ import net.thegrimsey.stoneholm.Stoneholm;
 
 public class UnderGroundVillageStructure extends StructureFeature<DefaultFeatureConfig>
 {
+    public static Identifier START_POOL = new Identifier(Stoneholm.MODID, "start_pool");
+
     public UnderGroundVillageStructure(Codec<DefaultFeatureConfig> codec)
     {
         super(codec);
@@ -30,8 +35,20 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
         return UnderGroundVillageStructure.Start::new;
     }
 
+    @Override
+    protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, DefaultFeatureConfig config) {
+        // We don't want to spawn too far above the sea level because then we may end up spawning pieces above ground.
+        // Bit-shift chunkX & Y for theoretical performance improvements. It is unclear if this really matters, I believe the compiler should be intelligent enough to do this on it's own.
+        int terrainHeight = chunkGenerator.getHeightOnGround(chunkX << 4, chunkZ << 4, Heightmap.Type.WORLD_SURFACE_WG);
+        int maxHeight = chunkGenerator.getSeaLevel() + Stoneholm.CONFIG.VILLAGE_MAX_DISTANCE_ABOVE_SEALEVEL;
+
+        return terrainHeight <= maxHeight;
+    }
+
     public static class Start extends MarginedStructureStart<DefaultFeatureConfig>
     {
+        private static StructurePoolFeatureConfig structurePoolFeatureConfig = null;
+
         public Start(StructureFeature<DefaultFeatureConfig> structureIn, int chunkX, int chunkZ, BlockBox blockBox, int referenceIn, long seedIn)
         {
             super(structureIn, chunkX, chunkZ, blockBox, referenceIn, seedIn);
@@ -41,22 +58,22 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, int chunkX, int chunkZ, Biome biome, DefaultFeatureConfig config)
         {
             // Turns the chunk coordinates into actual coordinates.
-            int x = chunkX * 16;
-            int z = chunkZ * 16;
+            int x = chunkX << 4;
+            int z = chunkZ << 4;
 
             // Position, we don't care about Y as we will just be placed on top on the terrain.
-            BlockPos blockpos = new BlockPos(x, 0, z);
+            BlockPos blockPos = new BlockPos(x, 0, z);
 
-            // Ensure that we aren't too high up. This helps alleviate issues with things generating up above ground.
-            if(chunkGenerator.getHeightOnGround(x,z, Heightmap.Type.WORLD_SURFACE_WG) > chunkGenerator.getSeaLevel() + 8)
-                return;
+            // Initialize structurePoolFeatureConfig if it is null. Doing it everytime we spawn creates garbage so we just make one.
+            if(structurePoolFeatureConfig == null)
+                structurePoolFeatureConfig = new StructurePoolFeatureConfig(() -> registryManager.get(Registry.TEMPLATE_POOL_WORLDGEN).get(START_POOL), Stoneholm.CONFIG.VILLAGE_SIZE);
 
+            // Spawn structure. Documentation on this function is sparse. bl2
             StructurePoolBasedGenerator.method_30419(registryManager,
-                    new StructurePoolFeatureConfig(
-                            () -> registryManager.get(Registry.TEMPLATE_POOL_WORLDGEN).get(new Identifier(Stoneholm.MODID, "start_pool")), Stoneholm.CONFIG.VILLAGE_SIZE),
-                    PoolStructurePiece::new, chunkGenerator, manager, blockpos, this.children, this.random, false, true);
+                    structurePoolFeatureConfig,
+                    PoolStructurePiece::new, chunkGenerator, manager, blockPos, this.children, this.random, false, true);
 
-            //Move structure up 1 block to ensure the entrance doesn't have blocks infront of it.
+            //Move structure up 1 block to ensure the entrance doesn't have blocks in front of it.
             this.children.forEach(piece -> piece.translate(0, 1, 0));
             this.children.forEach(piece -> piece.getBoundingBox().minY -= 1);
 

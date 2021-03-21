@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.Biome;
 
 import java.util.function.Predicate;
 
@@ -31,9 +31,8 @@ public class Stoneholm implements ModInitializer {
 		SHStructures.registerStructureFeatures();
 		SHConfiguredStructures.registerConfiguredStructures();
 
-		// Set up Biomes to spawn in. We only spawn in relatively flat biomes to try and stop the issue of "Underground Village is not underground because we are in a hill and it went out of the side of it."
-		Predicate<BiomeSelectionContext> biomes = BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, BiomeKeys.JUNGLE, BiomeKeys.TALL_BIRCH_FOREST, BiomeKeys.TAIGA, BiomeKeys.FLOWER_FOREST, BiomeKeys.GIANT_TREE_TAIGA, BiomeKeys.GIANT_SPRUCE_TAIGA,
-				BiomeKeys.SAVANNA, BiomeKeys.PLAINS, BiomeKeys.SNOWY_TUNDRA, BiomeKeys.BADLANDS);
+		// Set up Biomes to spawn in. We only want to spawn in relatively dry biomes. There is an additional check in UndergroundVillageStructure:init to ensure we don't spawn too high up and accidentally build out in the air.
+		Predicate<BiomeSelectionContext> biomes = BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.DESERT, Biome.Category.PLAINS, Biome.Category.SAVANNA);
 
 		// Add structures to biomes.
 		BiomeModifications.create(UNDERGROUNDVILLAGE_IDENTIFIER)
