@@ -1,8 +1,13 @@
 # Stoneholm
 
-Stoneholm is a **Fabric mod** that adds underground villages to the world. These are a inspired by Strongholds and regular Villages which are my favorite structures in Minecraft.
+Stoneholm is a **Fabric mod** that adds underground villages to the world. Inspired by Strongholds and Villages (surprise, huh?).
 
-A Forge port is not planned currently but may happen in the future.
+Explore underground villages that have grown into mazes of hallways, stairs, workspaces, abandoned sections, and overgrown areas.
+
+*A Forge port is* ***not*** *planned currently but may happen in the future.*
+
+# Screenshots
+
 
 # Technical Info
 
