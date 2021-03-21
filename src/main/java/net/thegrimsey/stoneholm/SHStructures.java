@@ -1,7 +1,6 @@
 package net.thegrimsey.stoneholm;
 
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.chunk.StructureConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -16,7 +15,7 @@ public class SHStructures
     public static void registerStructureFeatures()
     {
         // Create structure config using config values.
-        StructureConfig structureConfig = new StructureConfig(Stoneholm.CONFIG.VILLAGE_SPACING, Stoneholm.CONFIG.VILLAGE_SEPARATION, Stoneholm.CONFIG.VILLAGE_SALT);
+        StructureConfig structureConfig = new StructureConfig(Stoneholm.CONFIG.VILLAGE_MAX_DISTANCE, Stoneholm.CONFIG.VILLAGE_MIN_DISTANCE, 8699777);
 
         FabricStructureBuilder.create(Stoneholm.UNDERGROUNDVILLAGE_IDENTIFIER, UNDERGROUND_VILLAGE)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)

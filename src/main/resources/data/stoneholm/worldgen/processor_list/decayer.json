@@ -56,6 +56,23 @@
           },
           {
             "output_state": {
+              "Name": "minecraft:stone_brick_slab",
+              "Properties": {
+                "type": "bottom",
+                "waterlogged": "false"
+              }
+            },
+            "input_predicate": {
+              "block": "minecraft:stone_bricks",
+              "probability": 0.0005,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
               "Name": "minecraft:cobweb"
             },
             "input_predicate": {

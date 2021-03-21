@@ -35,7 +35,7 @@ dependencies {
 		exclude module: "fabric-loader"
 	}
 
-	// Cloth COnfig
+	// Cloth Config
     modApi("me.shedaniel.cloth:cloth-config-fabric:4.11.15") {
         exclude(group: "net.fabricmc.fabric-api")
     }

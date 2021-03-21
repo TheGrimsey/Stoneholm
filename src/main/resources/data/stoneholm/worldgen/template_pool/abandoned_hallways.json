@@ -3,9 +3,18 @@
   "fallback": "stoneholm:end",
   "elements": [
     {
-      "weight": 3,
+      "weight": 1,
       "element": {
         "location": "stoneholm:abandoned_hallways/hallway_01",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:abandoned_hallways/hallway_t",
         "processors": "stoneholm:super_decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -30,7 +39,7 @@
       }
     },
     {
-      "weight": 2,
+      "weight": 3,
       "element": {
         "location": "stoneholm:abandoned_hallways/to_poi",
         "processors": "stoneholm:super_decayer",

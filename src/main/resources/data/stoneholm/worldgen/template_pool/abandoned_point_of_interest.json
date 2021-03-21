@@ -65,9 +65,18 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/unfinished_corridor",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
 
     {
-      "weight": 2,
+      "weight": 3,
       "element": {
         "location": "stoneholm:poi/treasures/king_mooshroom",
         "processors": "stoneholm:super_decayer",
@@ -76,7 +85,7 @@
       }
     },
     {
-      "weight": 2,
+      "weight": 3,
       "element": {
         "location": "stoneholm:poi/treasures/forbidden_knowledge",
         "processors": "stoneholm:super_decayer",
@@ -85,9 +94,18 @@
       }
     },
     {
-      "weight": 2,
+      "weight": 3,
       "element": {
         "location": "stoneholm:poi/treasures/emerald_vault",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "stoneholm:poi/treasures/villager_head",
         "processors": "stoneholm:super_decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

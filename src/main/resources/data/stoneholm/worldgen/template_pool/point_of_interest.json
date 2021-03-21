@@ -114,19 +114,10 @@
     },
     
     {
-      "weight": 10,
+      "weight": 30,
       "element": {
-        "location": "stoneholm:poi/bell_01",
+        "location": "stoneholm:poi/unfinished_corridor",
         "processors": "stoneholm:decayer",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 5,
-      "element": {
-        "location": "stoneholm:poi/nether_portal",
-        "processors": "stoneholm:netherer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -145,6 +136,24 @@
       "element": {
         "location": "stoneholm:poi/llama_stable",
         "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "location": "stoneholm:poi/bell_01",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "stoneholm:poi/nether_portal",
+        "processors": "stoneholm:netherer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -172,6 +181,15 @@
       "weight": 1,
       "element": {
         "location": "stoneholm:poi/treasures/emerald_vault",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "stoneholm:poi/treasures/villager_head",
         "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
