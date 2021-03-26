@@ -3,8 +3,6 @@
 Stoneholm is a **Fabric mod** for **1.16** that adds underground villages to the world. Inspired by Strongholds and Villages (surprise, huh?).
 
 Explore underground villages that have grown into mazes of hallways, stairs, workspaces, abandoned sections, and overgrown areas.
-
-*A Forge port is* ***not*** *planned currently but may happen in the future.*
 **Backports** will not be done.
 
 # Requirements
