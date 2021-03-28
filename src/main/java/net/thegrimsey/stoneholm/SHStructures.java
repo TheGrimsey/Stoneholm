@@ -18,7 +18,7 @@ public class SHStructures
         StructureConfig structureConfig = new StructureConfig(Stoneholm.CONFIG.VILLAGE_MAX_DISTANCE, Stoneholm.CONFIG.VILLAGE_MIN_DISTANCE, 8699777);
 
         FabricStructureBuilder.create(Stoneholm.UNDERGROUNDVILLAGE_IDENTIFIER, UNDERGROUND_VILLAGE)
-                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .step(GenerationStep.Feature.TOP_LAYER_MODIFICATION)
                 .defaultConfig(structureConfig)
                 .superflatFeature(UNDERGROUND_VILLAGE.configure(FeatureConfig.DEFAULT))
                 .register();

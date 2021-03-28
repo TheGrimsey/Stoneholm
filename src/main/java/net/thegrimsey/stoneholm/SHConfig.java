@@ -12,5 +12,5 @@ public class SHConfig implements ConfigData {
     // Minimum distance in chunks between villages.
     public int VILLAGE_MIN_DISTANCE = 18;
     // How far above sea level a village may be. This is used to prevent pieces from generating in the air in less even terrains.
-    public int VILLAGE_MAX_DISTANCE_ABOVE_SEALEVEL = 10;
+    public int VILLAGE_MAX_DISTANCE_ABOVE_SEALEVEL = 8;
 }

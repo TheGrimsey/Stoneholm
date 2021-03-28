@@ -44,6 +44,20 @@
             "predicate_type": "minecraft:always_true"
           }
         },
+        
+        {
+          "output_state": {
+            "Name": "minecraft:air"
+          },
+          "input_predicate": {
+            "block": "minecraft:skeleton_skull",
+            "probability": 0.6,
+            "predicate_type": "minecraft:random_block_match"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          }
+        },
         {
           "output_state": {
             "Properties":{

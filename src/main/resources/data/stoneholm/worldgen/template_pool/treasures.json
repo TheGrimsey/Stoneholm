@@ -30,6 +30,24 @@
       }
     },
     {
+      "weight": 10,
+      "element": {
+        "location": "stoneholm:poi/treasures/villager_head",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "location": "stoneholm:poi/treasures/the_egg",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
       "weight": 1,
       "element": {
         "location": "stoneholm:poi/treasures/the_button_room",

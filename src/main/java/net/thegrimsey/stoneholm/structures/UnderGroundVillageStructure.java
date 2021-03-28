@@ -73,10 +73,6 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
                     structurePoolFeatureConfig,
                     PoolStructurePiece::new, chunkGenerator, manager, blockPos, this.children, this.random, false, true);
 
-            //Move structure up 1 block to ensure the entrance doesn't have blocks in front of it.
-            this.children.forEach(piece -> piece.translate(0, 1, 0));
-            this.children.forEach(piece -> piece.getBoundingBox().minY -= 1);
-
             this.setBoundingBoxFromChildren();
         }
     }
