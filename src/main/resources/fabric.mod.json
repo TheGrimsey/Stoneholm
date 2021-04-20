@@ -24,7 +24,6 @@
     ]
   },
   "mixins": [
-    "stoneholm.mixins.json"
   ],
 
   "depends": {
