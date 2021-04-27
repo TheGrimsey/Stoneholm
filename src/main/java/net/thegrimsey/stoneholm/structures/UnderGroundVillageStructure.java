@@ -73,6 +73,12 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
                     structurePoolFeatureConfig,
                     PoolStructurePiece::new, chunkGenerator, manager, blockPos, this.children, this.random, false, true);
 
+            /* TODO: Attempt to remove waterlogging from all blocks inside.
+            this.children.forEach(structurePiece -> {
+                BlockBox box = structurePiece.getBoundingBox();
+                chunkGenerator
+            });*/
+
             this.setBoundingBoxFromChildren();
         }
     }

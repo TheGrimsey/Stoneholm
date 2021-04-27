@@ -171,6 +171,24 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+    {
+      "weight": 80,
+      "element": {
+        "location": "stoneholm:poi/fletcher",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 80,
+      "element": {
+        "location": "stoneholm:poi/leatherworker",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
 
     {
       "weight": 80,
