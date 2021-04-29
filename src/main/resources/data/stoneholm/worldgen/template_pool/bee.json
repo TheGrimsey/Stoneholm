@@ -4,7 +4,7 @@
 
   "elements": [
     {
-      "weight": 1,
+      "weight": 6,
       "element": {
         "location": "stoneholm:entities/bees/bee",
         "processors": "minecraft:empty",
@@ -13,7 +13,7 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 3,
       "element": {
         "location": "stoneholm:entities/bees/baby_bee",
         "processors": "minecraft:empty",

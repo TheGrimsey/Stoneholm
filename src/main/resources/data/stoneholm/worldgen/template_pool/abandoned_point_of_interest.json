@@ -221,6 +221,15 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+    {
+      "weight": 20,
+      "element": {
+        "location": "stoneholm:abandoned_poi/nether_room",
+        "processors": "stoneholm:netherer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
 
     {
       "weight": 4,
