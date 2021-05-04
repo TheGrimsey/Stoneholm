@@ -31,8 +31,8 @@ public class Stoneholm implements ModInitializer {
 		SHStructures.registerStructureFeatures();
 		SHConfiguredStructures.registerConfiguredStructures();
 
-		// Set up Biomes to spawn in. We only want to spawn in relatively dry biomes. There is an additional check in UndergroundVillageStructure:init to ensure we don't spawn too high up and accidentally build out in the air.
-		Predicate<BiomeSelectionContext> biomes = BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.DESERT, Biome.Category.PLAINS, Biome.Category.SAVANNA);
+		// Set up Biomes to spawn in. We only want to spawn in relatively dry biomes.
+		Predicate<BiomeSelectionContext> biomes = BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.DESERT, Biome.Category.PLAINS, Biome.Category.SAVANNA).and(BiomeSelectors.foundInOverworld());
 
 		// Add structures to biomes.
 		BiomeModifications.create(UNDERGROUNDVILLAGE_IDENTIFIER)

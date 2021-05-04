@@ -146,7 +146,7 @@
     {
       "weight": 40,
       "element": {
-        "location": "stoneholm:abandoned_poi/inn",
+        "location": "stoneholm:poi/inn",
         "processors": "stoneholm:super_decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
