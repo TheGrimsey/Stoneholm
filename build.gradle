@@ -1,22 +1,16 @@
 plugins {
-	id 'fabric-loom' version '0.6-SNAPSHOT'
+	id 'fabric-loom' version '0.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
 repositories {
-	// DataBreaker
-	maven {
-		name = "JitPack"
-		url = "https://jitpack.io"
-	}
-
 	// Cloth Config
     maven { url "https://maven.shedaniel.me/" }
 }
@@ -30,13 +24,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// DataBreaker
-	modRuntime ("com.github.SuperCoder7979:databreaker:715b589e557d82ceafa78eab45cd70b3beea37c6") {
-		exclude module: "fabric-loader"
-	}
-
 	// Cloth Config
-    modApi("me.shedaniel.cloth:cloth-config-fabric:4.11.15") {
+    modApi("me.shedaniel.cloth:cloth-config-fabric:5.0.34") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 }
@@ -57,13 +46,9 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.encoding = "UTF-8"
 	
 	it.options.deprecation = true
-	// The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
-	// JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
-	// We'll use that if it's available, but otherwise we'll use the older option.
-	def targetVersion = 8
-	if (JavaVersion.current().isJava9Compatible()) {
-		 it.options.release = targetVersion
-	}
+
+	// Minecraft 1.17 (21w19a) upwards uses Java 16.
+	it.options.release = 16
 }
 
 java {
