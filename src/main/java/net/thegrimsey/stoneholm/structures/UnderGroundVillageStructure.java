@@ -72,7 +72,7 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
             // Spawn structure. Documentation on this function is sparse. bl2
             StructurePoolBasedGenerator.method_30419(registryManager,
                     structurePoolFeatureConfig,
-                    PoolStructurePiece::new, chunkGenerator, manager, blockPos, (StructurePiecesHolder) this.children, this.random, false, true, world);
+                    PoolStructurePiece::new, chunkGenerator, manager, blockPos, this, this.random, false, true, world);
 
             /* TODO: Attempt to remove waterlogging from all blocks inside.*/
             this.children.forEach(structurePiece -> {
