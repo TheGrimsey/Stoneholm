@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.thegrimsey.stoneholm.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "StructuresConfigAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

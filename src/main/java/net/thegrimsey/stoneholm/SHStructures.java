@@ -15,7 +15,7 @@ public class SHStructures
     public static void registerStructureFeatures()
     {
         // Create structure config using config values.
-        StructureConfig structureConfig = new StructureConfig(Stoneholm.CONFIG.VILLAGE_MAX_DISTANCE, Stoneholm.CONFIG.VILLAGE_MIN_DISTANCE, 8699777);
+        StructureConfig structureConfig = new StructureConfig(Stoneholm.CONFIG.VILLAGE_SPACING, Stoneholm.CONFIG.VILLAGE_SEPARATION, 8699777);
 
         FabricStructureBuilder.create(Stoneholm.UNDERGROUNDVILLAGE_IDENTIFIER, UNDERGROUND_VILLAGE)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
