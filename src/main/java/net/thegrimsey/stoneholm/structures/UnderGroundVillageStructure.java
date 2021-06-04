@@ -4,7 +4,6 @@ import com.mojang.serialization.Codec;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
-import net.minecraft.structure.StructurePiecesHolder;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -22,12 +21,10 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 import net.thegrimsey.stoneholm.Stoneholm;
 
-public class UnderGroundVillageStructure extends StructureFeature<DefaultFeatureConfig>
-{
+public class UnderGroundVillageStructure extends StructureFeature<DefaultFeatureConfig> {
     public static Identifier START_POOL = new Identifier(Stoneholm.MODID, "start_pool");
 
-    public UnderGroundVillageStructure(Codec<DefaultFeatureConfig> codec)
-    {
+    public UnderGroundVillageStructure(Codec<DefaultFeatureConfig> codec) {
         super(codec);
     }
 
@@ -46,18 +43,15 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
         return terrainHeight <= maxHeight;
     }
 
-    public static class Start extends MarginedStructureStart<DefaultFeatureConfig>
-    {
+    public static class Start extends MarginedStructureStart<DefaultFeatureConfig> {
         private static StructurePoolFeatureConfig structurePoolFeatureConfig = null;
 
-        public Start(StructureFeature<DefaultFeatureConfig> structureIn, ChunkPos pos, int referenceIn, long seedIn)
-        {
+        public Start(StructureFeature<DefaultFeatureConfig> structureIn, ChunkPos pos, int referenceIn, long seedIn) {
             super(structureIn, pos, referenceIn, seedIn);
         }
 
         @Override
-        public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, ChunkPos pos, Biome biome, DefaultFeatureConfig config, HeightLimitView world)
-        {
+        public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, ChunkPos pos, Biome biome, DefaultFeatureConfig config, HeightLimitView world) {
             // Turns the chunk coordinates into actual coordinates.
             int x = pos.x << 4;
             int z = pos.z << 4;
@@ -66,7 +60,7 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
             BlockPos blockPos = new BlockPos(x, 0, z);
 
             // Initialize structurePoolFeatureConfig if it is null. Doing it everytime we spawn creates garbage so we just make one.
-            if(structurePoolFeatureConfig == null)
+            if (structurePoolFeatureConfig == null)
                 structurePoolFeatureConfig = new StructurePoolFeatureConfig(() -> registryManager.get(Registry.STRUCTURE_POOL_KEY).get(START_POOL), Stoneholm.CONFIG.VILLAGE_SIZE);
 
             // Spawn structure. Documentation on this function is sparse. bl2
@@ -76,7 +70,7 @@ public class UnderGroundVillageStructure extends StructureFeature<DefaultFeature
 
             /* TODO: Attempt to remove waterlogging from all blocks inside.*/
             this.children.forEach(structurePiece -> {
-                structurePiece.translate(0,1,0);
+                structurePiece.translate(0, 1, 0);
             });
 
             this.setBoundingBoxFromChildren();
