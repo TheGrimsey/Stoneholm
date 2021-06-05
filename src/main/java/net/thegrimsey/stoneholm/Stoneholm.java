@@ -7,14 +7,20 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.DynamicRegistryManager;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.StructureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
+import net.thegrimsey.stoneholm.mixin.StructurePoolAccessor;
 import net.thegrimsey.stoneholm.mixin.StructuresConfigAccessor;
+import net.thegrimsey.stoneholm.util.StructurePoolUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,22 +56,23 @@ public class Stoneholm implements ModInitializer {
 
         // Disable vanilla villages if chosen in config.
         if (CONFIG.disableVanillaVillages)
-            RemoveVanillaVillages();
+            removeVanillaVillages();
+
+        ServerLifecycleEvents.SERVER_STARTING.register((MinecraftServer server) -> {
+            handleModSupport(server.getRegistryManager());
+        });
     }
 
     /*
      *	Co-opting TelepathicGrunt's removeStructureSpawningFromSelectedDimension function for removing vanilla villages instead.
-     * 	https://github.com/TelepathicGrunt/StructureTutorialMod/blob/1.16.3-Fabric-Jigsaw/src/main/java/com/telepathicgrunt/structure_tutorial/StructureTutorialMain.java#L73
+     * 	https://github.com/TelepathicGrunt/StructureTutorialMod/
      */
-    void RemoveVanillaVillages() {
+    void removeVanillaVillages() {
         // Controls the dimension blacklisting
         ServerWorldEvents.LOAD.register((MinecraftServer minecraftServer, ServerWorld serverWorld) -> {
-
             // Need temp map as some mods use custom chunk generators with immutable maps in themselves.
             Map<StructureFeature<?>, StructureConfig> tempMap = new HashMap<>(serverWorld.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
 
-            // Make absolutely sure modded dimension cannot spawn our structures.
-            // New dimensions under the minecraft namespace will still get it (datapacks might do this)
             if (serverWorld.getRegistryKey().getValue().getNamespace().equals("minecraft")) {
                 tempMap.keySet().remove(StructureFeature.VILLAGE);
             }
@@ -73,5 +80,10 @@ public class Stoneholm implements ModInitializer {
             // Set the new modified map of structure spacing to the dimension's chunkgenerator.
             ((StructuresConfigAccessor) serverWorld.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(tempMap);
         });
+    }
+
+    void handleModSupport(DynamicRegistryManager registry)
+    {
+        // TODO.
     }
 }
