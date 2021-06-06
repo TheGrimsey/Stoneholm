@@ -11,7 +11,6 @@ import java.util.Map;
 
 @Mixin(StructuresConfig.class)
 public interface StructuresConfigAccessor {
-
     @Accessor("structures")
     @Mutable
     void setStructures(Map<StructureFeature<?>, StructureConfig> structuresSpacingMap);
