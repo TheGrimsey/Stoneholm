@@ -40,7 +40,7 @@
     },
     
     {
-      "weight": 3,
+      "weight": 4,
       "element": {
         "location": "stoneholm:hallways/stair_01",
         "processors": "stoneholm:decayer",
