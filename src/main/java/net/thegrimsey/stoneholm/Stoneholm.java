@@ -61,6 +61,7 @@ public class Stoneholm implements ModInitializer {
         ServerLifecycleEvents.SERVER_STARTING.register((MinecraftServer server) -> {
             handleModSupport(server.getRegistryManager());
         });
+        
     }
 
     /*
