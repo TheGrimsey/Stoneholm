@@ -1,6 +1,5 @@
 package net.thegrimsey.stoneholm;
 
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeature;

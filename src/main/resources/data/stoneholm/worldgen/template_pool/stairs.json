@@ -5,15 +5,6 @@
     {
       "weight": 1,
       "element": {
-        "location": "stoneholm:stairs/stairs_short",
-        "processors": "stoneholm:decayer",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 1,
-      "element": {
         "location": "stoneholm:stairs/stairs_medium",
         "processors": "stoneholm:decayer",
         "projection": "rigid",
@@ -24,6 +15,24 @@
       "weight": 1,
       "element": {
         "location": "stoneholm:stairs/fall_medium",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:stairs/fall_medium_hay",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:stairs/elevator_tall",
         "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

@@ -1,0 +1,25 @@
+{
+  "name": "stoneholm:villagers",
+  "fallback": "minecraft:empty",
+
+  "elements": [
+    {
+      "weight": 99,
+      "element": {
+        "location": "stoneholm:entities/villagers/regular",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:entities/villagers/nitwit",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

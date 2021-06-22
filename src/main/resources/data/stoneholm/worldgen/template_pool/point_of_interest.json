@@ -3,7 +3,7 @@
   "fallback": "stoneholm:end",
   "elements": [
     {
-      "weight": 200,
+      "weight": 112,
       "element": {
         "location": "stoneholm:poi/cell_block_4x",
         "processors": "stoneholm:decayer",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 200,
+      "weight": 112,
       "element": {
         "location": "stoneholm:poi/bedroom",
         "processors": "stoneholm:decayer",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "weight": 200,
+      "weight": 150,
       "element": {
         "location": "stoneholm:poi/bedroom_cross",
         "processors": "stoneholm:decayer",
@@ -29,10 +29,18 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
-
+    {
+      "weight": 112,
+      "element": {
+        "location": "stoneholm:poi/barrack",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
 
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/carpet_room",
         "processors": "stoneholm:decayer",
@@ -41,7 +49,7 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/farm_01",
         "processors": "stoneholm:decayer",
@@ -49,8 +57,9 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+
     {
-      "weight": 80,
+      "weight": 30,
       "element": {
         "location": "stoneholm:poi/library_01",
         "processors": "stoneholm:decayer",
@@ -59,7 +68,17 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/library_02",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/mason_01",
         "processors": "stoneholm:decayer",
@@ -67,8 +86,9 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+
     {
-      "weight": 80,
+      "weight": 30,
       "element": {
         "location": "stoneholm:poi/cleric_01",
         "processors": "stoneholm:decayer",
@@ -77,7 +97,17 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/brewery",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 30,
       "element": {
         "location": "stoneholm:poi/armorsmith_01",
         "processors": "stoneholm:decayer",
@@ -86,7 +116,17 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/armorsmith_02",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/toolsmith_01",
         "processors": "stoneholm:decayer",
@@ -95,7 +135,7 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/fisher_01",
         "processors": "stoneholm:decayer",
@@ -104,7 +144,7 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/cartographer",
         "processors": "stoneholm:decayer",
@@ -112,11 +152,11 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
-    
+
     {
       "weight": 30,
       "element": {
-        "location": "stoneholm:poi/unfinished_corridor",
+        "location": "stoneholm:poi/butcher_01",
         "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -124,6 +164,63 @@
     },
     {
       "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/inn",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 60,
+      "element": {
+        "location": "stoneholm:poi/fletcher",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 60,
+      "element": {
+        "location": "stoneholm:poi/leatherworker",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 60,
+      "element": {
+        "location": "stoneholm:poi/unfinished_room",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/bee_garden",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 22,
+      "element": {
+        "location": "stoneholm:poi/unfinished_corridor",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 22,
       "element": {
         "location": "stoneholm:poi/crypt",
         "processors": "stoneholm:crypter",
@@ -132,7 +229,7 @@
       }
     },
     {
-      "weight": 30,
+      "weight": 22,
       "element": {
         "location": "stoneholm:poi/llama_stable",
         "processors": "stoneholm:decayer",
@@ -141,7 +238,7 @@
       }
     },
     {
-      "weight": 10,
+      "weight": 7,
       "element": {
         "location": "stoneholm:poi/bell_01",
         "processors": "stoneholm:decayer",
@@ -150,7 +247,16 @@
       }
     },
     {
-      "weight": 5,
+      "weight": 9,
+      "element": {
+        "location": "stoneholm:poi/stairs",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
       "element": {
         "location": "stoneholm:poi/nether_portal",
         "processors": "stoneholm:netherer",
@@ -187,7 +293,7 @@
       }
     },
     {
-      "weight": 3,
+      "weight": 2,
       "element": {
         "location": "stoneholm:poi/treasures/villager_head",
         "processors": "stoneholm:decayer",
@@ -197,6 +303,15 @@
     },
     {
       "weight": 2,
+      "element": {
+        "location": "stoneholm:poi/treasures/the_egg",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
       "element": {
         "location": "stoneholm:poi/treasures/the_button_room",
         "processors": "stoneholm:decayer",

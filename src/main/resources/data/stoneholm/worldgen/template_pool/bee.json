@@ -1,0 +1,34 @@
+{
+  "name": "stoneholm:bee",
+  "fallback": "minecraft:empty",
+
+  "elements": [
+    {
+      "weight": 6,
+      "element": {
+        "location": "stoneholm:entities/bees/bee",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "stoneholm:entities/bees/baby_bee",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:entities/empty",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
