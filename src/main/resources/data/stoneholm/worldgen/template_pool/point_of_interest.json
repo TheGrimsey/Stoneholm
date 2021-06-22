@@ -57,7 +57,7 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
-    
+
     {
       "weight": 30,
       "element": {
@@ -218,7 +218,7 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
-    
+
     {
       "weight": 22,
       "element": {
@@ -241,6 +241,15 @@
       "weight": 7,
       "element": {
         "location": "stoneholm:poi/bell_01",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 9,
+      "element": {
+        "location": "stoneholm:poi/stairs",
         "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

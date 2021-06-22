@@ -62,17 +62,6 @@ public class Stoneholm implements ModInitializer {
         ServerLifecycleEvents.SERVER_STARTING.register((MinecraftServer server) -> {
             handleModSupport(server.getRegistryManager());
         });
-
-        // TelepathicGrunt's workaround for datapack defined biomes.
-        ServerWorldEvents.LOAD.register((MinecraftServer minecraftServer, ServerWorld serverWorld)->{
-            // Need temp map as some mods use custom chunk generators with immutable maps in themselves.
-            Map<StructureFeature<?>, StructureConfig> tempMap = new HashMap<>(serverWorld.getChunkManager().getChunkGenerator().getStructuresConfig().getStructures());
-
-            tempMap.put(SHStructures.UNDERGROUND_VILLAGE, StructuresConfig.DEFAULT_STRUCTURES.get(SHStructures.UNDERGROUND_VILLAGE));
-
-            ((StructuresConfigAccessor)serverWorld.getChunkManager().getChunkGenerator().getStructuresConfig()).setStructures(tempMap);
-        });
-
     }
 
     /*
