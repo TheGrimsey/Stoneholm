@@ -34,3 +34,4 @@ run/*
 !run/saves/
 run/saves/*
 !run/saves/Buildworld/
+!run/saves/MoreVillagers/

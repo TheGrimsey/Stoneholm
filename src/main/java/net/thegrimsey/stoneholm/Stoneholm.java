@@ -9,17 +9,18 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.impl.biome.modification.BuiltInRegistryKeys;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.StructureConfig;
-import net.minecraft.world.gen.chunk.StructuresConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
-import net.thegrimsey.stoneholm.mixin.StructurePoolAccessor;
 import net.thegrimsey.stoneholm.mixin.StructuresConfigAccessor;
 import net.thegrimsey.stoneholm.util.StructurePoolUtils;
 
@@ -85,6 +86,17 @@ public class Stoneholm implements ModInitializer {
 
     void handleModSupport(DynamicRegistryManager registry)
     {
-        // TODO.
+        Registry<StructurePool> structurePoolRegistry = registry.get(Registry.STRUCTURE_POOL_KEY);
+
+        // TODO: This should really be defined in JSON or something.
+
+        // MoreVillagers mod.
+        if(FabricLoader.getInstance().isModLoaded("morevillagers-fabric"))
+        {
+            StructurePool points_of_interest = structurePoolRegistry.get(new Identifier(MODID, "point_of_interest"));
+            StructurePool morevillagers_points_of_interest = structurePoolRegistry.get(new Identifier(MODID, "addons/morevillagers/morevillagers_points_of_interest"));
+
+            StructurePoolUtils.appendPool(points_of_interest, morevillagers_points_of_interest);
+        }
     }
 }

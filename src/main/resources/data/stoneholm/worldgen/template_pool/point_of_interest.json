@@ -21,7 +21,7 @@
       }
     },
     {
-      "weight": 150,
+      "weight": 112,
       "element": {
         "location": "stoneholm:poi/bedroom_cross",
         "processors": "stoneholm:decayer",
@@ -40,7 +40,7 @@
     },
 
     {
-      "weight": 60,
+      "weight": 45,
       "element": {
         "location": "stoneholm:poi/carpet_room",
         "processors": "stoneholm:decayer",
@@ -107,7 +107,7 @@
     },
 
     {
-      "weight": 30,
+      "weight": 20,
       "element": {
         "location": "stoneholm:poi/armorsmith_01",
         "processors": "stoneholm:decayer",
@@ -116,7 +116,7 @@
       }
     },
     {
-      "weight": 30,
+      "weight": 20,
       "element": {
         "location": "stoneholm:poi/armorsmith_02",
         "processors": "stoneholm:decayer",
@@ -126,7 +126,7 @@
     },
 
     {
-      "weight": 60,
+      "weight": 45,
       "element": {
         "location": "stoneholm:poi/toolsmith_01",
         "processors": "stoneholm:decayer",
@@ -134,6 +134,17 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+    
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/copper_shop",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    
     {
       "weight": 60,
       "element": {

@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 4,
+      "weight": 3,
       "element": {
         "location": "stoneholm:hallways/hallway_t",
         "processors": "stoneholm:decayer",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "weight": 3,
+      "weight": 2,
       "element": {
         "location": "stoneholm:hallways/hallway_x",
         "processors": "stoneholm:decayer",
@@ -40,7 +40,7 @@
     },
     
     {
-      "weight": 4,
+      "weight": 2,
       "element": {
         "location": "stoneholm:hallways/stair_01",
         "processors": "stoneholm:decayer",
@@ -59,7 +59,7 @@
       }
     },
     {
-      "weight": 4,
+      "weight": 2,
       "element": {
         "location": "stoneholm:abandoned_hallways/entry_01",
         "processors": "stoneholm:decayer",
@@ -68,7 +68,7 @@
       }
     },
     {
-      "weight": 4,
+      "weight": 3,
       "element": {
         "location": "stoneholm:overgrown_hallways/transition",
         "processors": "stoneholm:overgrower",
