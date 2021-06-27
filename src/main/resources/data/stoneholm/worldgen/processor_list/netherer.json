@@ -1,6 +1,9 @@
 {
   "processors": [
     {
+      "processor_type": "stoneholm:nowater_processor"
+    },
+    {
       "rules": [
         {
           "output_state": {

@@ -14,6 +14,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.pool.StructurePool;
+import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
@@ -22,6 +23,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.StructureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.thegrimsey.stoneholm.mixin.StructuresConfigAccessor;
+import net.thegrimsey.stoneholm.structures.NoWaterProcessor;
 import net.thegrimsey.stoneholm.util.StructurePoolUtils;
 
 import java.util.HashMap;
@@ -33,6 +35,7 @@ public class Stoneholm implements ModInitializer {
     public static final Identifier UNDERGROUNDVILLAGE_IDENTIFIER = new Identifier(Stoneholm.MODID, "underground_village");
     public static final Identifier CONFIGURED_UNDERGROUNDVILLAGE_IDENTIFIER = new Identifier(Stoneholm.MODID, "configured_underground_village");
     public static SHConfig CONFIG;
+    public static StructureProcessorType<NoWaterProcessor> NOWATER_PROCESSOR = () -> NoWaterProcessor.CODEC;
 
     // Suppress deprecation warnings from Fabric's Biome API.
     @SuppressWarnings("deprecation")
@@ -46,9 +49,10 @@ public class Stoneholm implements ModInitializer {
         // Register structures & configured structures.
         SHStructures.registerStructureFeatures();
         SHConfiguredStructures.registerConfiguredStructures();
+        Registry.register(Registry.STRUCTURE_PROCESSOR, new Identifier(MODID, "nowater_processor"), NOWATER_PROCESSOR);
 
-        // Set up Biomes to spawn in. We only want to spawn in relatively dry biomes.
-        Predicate<BiomeSelectionContext> biomes = BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.DESERT, Biome.Category.PLAINS, Biome.Category.SAVANNA).and(BiomeSelectors.foundInOverworld());
+        // Set up Biomes to spawn in.
+        Predicate<BiomeSelectionContext> biomes = BiomeSelectors.foundInOverworld();
 
         // Add structures to biomes.
         BiomeModifications.create(UNDERGROUNDVILLAGE_IDENTIFIER)
