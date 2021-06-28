@@ -3,7 +3,7 @@
   "fallback": "stoneholm:end",
   "elements": [
     {
-      "weight": 112,
+      "weight": 122,
       "element": {
         "location": "stoneholm:poi/cell_block_4x",
         "processors": "stoneholm:decayer",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 112,
+      "weight": 122,
       "element": {
         "location": "stoneholm:poi/bedroom",
         "processors": "stoneholm:decayer",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "weight": 112,
+      "weight": 122,
       "element": {
         "location": "stoneholm:poi/bedroom_cross",
         "processors": "stoneholm:decayer",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "weight": 112,
+      "weight": 122,
       "element": {
         "location": "stoneholm:poi/barrack",
         "processors": "stoneholm:decayer",
@@ -243,6 +243,15 @@
       "weight": 22,
       "element": {
         "location": "stoneholm:poi/llama_stable",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 22,
+      "element": {
+        "location": "stoneholm:poi/hangout",
         "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

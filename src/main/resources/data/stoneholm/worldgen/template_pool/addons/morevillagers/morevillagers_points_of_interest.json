@@ -3,7 +3,7 @@
   "fallback": "stoneholm:end",
   "elements": [
     {
-      "weight": 60,
+      "weight": 30,
       "element": {
         "location": "stoneholm:addons/morevillagers/poi/blueprint",
         "processors": "stoneholm:decayer",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 30,
       "element": {
         "location": "stoneholm:addons/morevillagers/poi/decayed",
         "processors": "stoneholm:netherer",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 30,
       "element": {
         "location": "stoneholm:addons/morevillagers/poi/forestry",
         "processors": "stoneholm:decayer",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 30,
       "element": {
         "location": "stoneholm:addons/morevillagers/poi/gardener",
         "processors": "stoneholm:overgrower",
@@ -39,7 +39,7 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 30,
       "element": {
         "location": "stoneholm:addons/morevillagers/poi/hunting",
         "processors": "stoneholm:decayer",
@@ -48,7 +48,7 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 30,
       "element": {
         "location": "stoneholm:addons/morevillagers/poi/oceanography",
         "processors": "stoneholm:decayer",
@@ -57,7 +57,7 @@
       }
     },
     {
-      "weight": 60,
+      "weight": 30,
       "element": {
         "location": "stoneholm:addons/morevillagers/poi/purpur",
         "processors": "stoneholm:decayer",

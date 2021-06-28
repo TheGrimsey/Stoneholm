@@ -60,6 +60,19 @@
               "Name": "minecraft:dirt"
             },
             "input_predicate": {
+              "block": "minecraft:rooted_dirt",
+              "probability": 0.04,
+              "predicate_type": "minecraft:random_block_match"
+            },
+            "location_predicate": {
+              "predicate_type": "minecraft:always_true"
+            }
+          },
+          {
+            "output_state": {
+              "Name": "minecraft:dirt"
+            },
+            "input_predicate": {
               "block": "minecraft:grass_block",
               "probability": 0.04,
               "predicate_type": "minecraft:random_block_match"
