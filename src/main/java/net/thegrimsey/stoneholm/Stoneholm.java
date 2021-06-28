@@ -52,7 +52,7 @@ public class Stoneholm implements ModInitializer {
         Registry.register(Registry.STRUCTURE_PROCESSOR, new Identifier(MODID, "nowater_processor"), NOWATER_PROCESSOR);
 
         // Set up Biomes to spawn in.
-        Predicate<BiomeSelectionContext> biomes = BiomeSelectors.foundInOverworld();
+        Predicate<BiomeSelectionContext> biomes = BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.DESERT, Biome.Category.PLAINS, Biome.Category.SAVANNA).and(BiomeSelectors.foundInOverworld());
 
         // Add structures to biomes.
         BiomeModifications.create(UNDERGROUNDVILLAGE_IDENTIFIER)

@@ -1,9 +1,6 @@
 {
     "processors": [
       {
-        "processor_type": "stoneholm:nowater_processor"
-      },
-      {
         "rules": [
           {
             "output_state": {
@@ -128,6 +125,9 @@
           }
         ],
         "processor_type": "minecraft:rule"
+      },
+      {
+        "processor_type": "stoneholm:nowater_processor"
       }
     ]
   }

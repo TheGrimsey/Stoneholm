@@ -6,7 +6,7 @@
       "weight": 70,
       "element": {
         "location": "stoneholm:decorations/empty",
-        "processors": "minecraft:empty",
+        "processors": "stoneholm:decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
