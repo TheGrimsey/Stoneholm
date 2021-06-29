@@ -1,10 +1,6 @@
 package net.thegrimsey.stoneholm.structures;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.state.property.Properties;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
@@ -23,9 +19,11 @@ public class NoWaterProcessor extends StructureProcessor {
     @Override
     public Structure.StructureBlockInfo process(WorldView world, BlockPos pos, BlockPos pivot, Structure.StructureBlockInfo structureBlockInfoLocal, Structure.StructureBlockInfo structureBlockInfoWorld, StructurePlacementData data) {
         Chunk chunk = world.getChunk(structureBlockInfoWorld.pos);
-        if(structureBlockInfoWorld.state.contains(Properties.WATERLOGGED))
+
+        if(structureBlockInfoWorld.state.contains(Properties.WATERLOGGED) && !chunk.getFluidState(structureBlockInfoWorld.pos).isEmpty())
         {
             boolean waterlog = (structureBlockInfoLocal.state.contains(Properties.WATERLOGGED) && structureBlockInfoLocal.state.get(Properties.WATERLOGGED));
+
             chunk.setBlockState(structureBlockInfoWorld.pos, structureBlockInfoWorld.state.rotate(data.getRotation()).with(Properties.WATERLOGGED, waterlog), false);
         }
 

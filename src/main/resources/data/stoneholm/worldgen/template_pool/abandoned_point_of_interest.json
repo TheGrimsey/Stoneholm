@@ -3,7 +3,7 @@
   "fallback": "stoneholm:end",
   "elements": [
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:abandoned_poi/cell_block_4x",
         "processors": "stoneholm:super_decayer",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:abandoned_poi/bedroom",
         "processors": "stoneholm:super_decayer",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/carpet_room",
         "processors": "stoneholm:super_decayer",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/farm_01",
         "processors": "stoneholm:super_decayer",
@@ -68,7 +68,7 @@
     },
 
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/toolsmith_01",
         "processors": "stoneholm:super_decayer",
@@ -76,8 +76,19 @@
         "element_type": "minecraft:single_pool_element"
       }
     },
+    
     {
-      "weight": 80,
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:poi/copper_shop",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+
+    {
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/fisher_01",
         "processors": "stoneholm:super_decayer",
@@ -87,7 +98,7 @@
     },
     
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/brewery",
         "processors": "stoneholm:super_decayer",
@@ -97,7 +108,7 @@
     },
 
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/crypt",
         "processors": "stoneholm:crypter",
@@ -155,7 +166,7 @@
 
     
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/fletcher",
         "processors": "stoneholm:super_decayer",
@@ -164,7 +175,7 @@
       }
     },
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:abandoned_poi/leatherworker",
         "processors": "stoneholm:super_decayer",
@@ -193,7 +204,7 @@
     },
     
     {
-      "weight": 80,
+      "weight": 60,
       "element": {
         "location": "stoneholm:poi/unfinished_room",
         "processors": "stoneholm:super_decayer",

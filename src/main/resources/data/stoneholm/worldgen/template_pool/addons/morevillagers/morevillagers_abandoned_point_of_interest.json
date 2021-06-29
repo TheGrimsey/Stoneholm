@@ -1,0 +1,69 @@
+{
+  "name": "stoneholm:addons/morevillagers/morevillagers_point_of_interest",
+  "fallback": "stoneholm:end",
+  "elements": [
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:addons/morevillagers/poi/blueprint",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:addons/morevillagers/poi/decayed",
+        "processors": "stoneholm:netherer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:addons/morevillagers/poi/forestry",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:addons/morevillagers/poi/gardener",
+        "processors": "stoneholm:overgrower",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:addons/morevillagers/poi/hunting",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:addons/morevillagers/poi/oceanography",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 30,
+      "element": {
+        "location": "stoneholm:addons/morevillagers/poi/purpur",
+        "processors": "stoneholm:super_decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

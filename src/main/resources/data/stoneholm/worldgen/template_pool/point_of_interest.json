@@ -3,7 +3,7 @@
   "fallback": "stoneholm:end",
   "elements": [
     {
-      "weight": 122,
+      "weight": 140,
       "element": {
         "location": "stoneholm:poi/cell_block_4x",
         "processors": "stoneholm:decayer",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 122,
+      "weight": 140,
       "element": {
         "location": "stoneholm:poi/bedroom",
         "processors": "stoneholm:decayer",
@@ -21,7 +21,7 @@
       }
     },
     {
-      "weight": 122,
+      "weight": 140,
       "element": {
         "location": "stoneholm:poi/bedroom_cross",
         "processors": "stoneholm:decayer",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "weight": 122,
+      "weight": 140,
       "element": {
         "location": "stoneholm:poi/barrack",
         "processors": "stoneholm:decayer",

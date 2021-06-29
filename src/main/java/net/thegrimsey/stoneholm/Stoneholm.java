@@ -97,10 +97,15 @@ public class Stoneholm implements ModInitializer {
         // MoreVillagers mod.
         if(FabricLoader.getInstance().isModLoaded("morevillagers-fabric"))
         {
-            StructurePool points_of_interest = structurePoolRegistry.get(new Identifier(MODID, "point_of_interest"));
-            StructurePool morevillagers_points_of_interest = structurePoolRegistry.get(new Identifier(MODID, "addons/morevillagers/morevillagers_points_of_interest"));
+            StructurePool point_of_interest = structurePoolRegistry.get(new Identifier(MODID, "point_of_interest"));
+            StructurePool morevillagers_point_of_interest = structurePoolRegistry.get(new Identifier(MODID, "addons/morevillagers/morevillagers_point_of_interest"));
 
-            StructurePoolUtils.appendPool(points_of_interest, morevillagers_points_of_interest);
+            StructurePoolUtils.appendPool(point_of_interest, morevillagers_point_of_interest);
+
+            StructurePool abandoned_point_of_interest = structurePoolRegistry.get(new Identifier(MODID, "abandoned_point_of_interest"));
+            StructurePool morevillagers_abandoned_point_of_interest = structurePoolRegistry.get(new Identifier(MODID, "addons/morevillagers/morevillagers_abandoned_point_of_interest"));
+
+            StructurePoolUtils.appendPool(abandoned_point_of_interest, morevillagers_abandoned_point_of_interest);
         }
     }
 }
