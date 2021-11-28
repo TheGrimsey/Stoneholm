@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class StructurePoolUtils {
     public static void appendPool(StructurePool primaryPool, StructurePool secondaryPool)
     {
-        var primaryPoolAccessor = (StructurePoolAccessor) primaryPool;
-        var secondaryPoolAccessor = (StructurePoolAccessor) secondaryPool;
+        StructurePoolAccessor primaryPoolAccessor = (StructurePoolAccessor) primaryPool;
+        StructurePoolAccessor secondaryPoolAccessor = (StructurePoolAccessor) secondaryPool;
 
-        var elementCounts = new ArrayList<>(primaryPoolAccessor.getElementCounts());
-        var elements = new ArrayList<>(primaryPoolAccessor.getElements());
+        ArrayList elementCounts = new ArrayList<>(primaryPoolAccessor.getElementCounts());
+        ArrayList elements = new ArrayList<>(primaryPoolAccessor.getElements());
 
         elementCounts.addAll(secondaryPoolAccessor.getElementCounts());
         elements.addAll(secondaryPoolAccessor.getElements());
