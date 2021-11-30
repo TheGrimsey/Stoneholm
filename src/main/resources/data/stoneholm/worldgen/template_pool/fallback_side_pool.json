@@ -1,0 +1,15 @@
+{
+  "name": "stoneholm:fallback_side_pool",
+  "fallback": "stoneholm:end",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:poi/stairs",
+        "processors": "stoneholm:decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
