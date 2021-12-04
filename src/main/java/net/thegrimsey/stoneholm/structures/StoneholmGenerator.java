@@ -42,29 +42,31 @@ import java.util.function.Predicate;
 public class StoneholmGenerator {
     static final Logger LOGGER = LogManager.getLogger();
 
-    public static Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> generate(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context2, PieceFactory pieceFactory, BlockPos pos, boolean idk, boolean placeOnTopOfTerrain) {
+    public static Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> generate(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context2, PieceFactory pieceFactory, BlockPos pos) {
         ChunkRandom chunkRandom = new ChunkRandom(new AtomicSimpleRandom(0L));
         chunkRandom.setCarverSeed(context2.seed(), context2.chunkPos().x, context2.chunkPos().z);
-        DynamicRegistryManager dynamicRegistryManager = context2.registryManager();
+        DynamicRegistryManager registryManager = context2.registryManager();
         StructurePoolFeatureConfig structurePoolFeatureConfig = context2.config();
         ChunkGenerator chunkGenerator = context2.chunkGenerator();
         StructureManager structureManager = context2.structureManager();
         HeightLimitView heightLimitView = context2.world();
-        Predicate<Biome> predicate = context2.validBiome();
+        Predicate<Biome> validBiome = context2.validBiome();
         StructureFeature.init();
-        Registry<StructurePool> registry = dynamicRegistryManager.get(Registry.STRUCTURE_POOL_KEY);
+
+        Registry<StructurePool> registry = registryManager.get(Registry.STRUCTURE_POOL_KEY);
         BlockRotation blockRotation = BlockRotation.random(chunkRandom);
         StructurePool structurePool = structurePoolFeatureConfig.getStartPool().get();
         StructurePoolElement structurePoolElement = structurePool.getRandomElement(chunkRandom);
         if (structurePoolElement == EmptyPoolElement.INSTANCE) {
             return Optional.empty();
         }
+
         PoolStructurePiece poolStructurePiece = pieceFactory.create(structureManager, structurePoolElement, pos, structurePoolElement.getGroundLevelDelta(), blockRotation, structurePoolElement.getBoundingBox(structureManager, pos, blockRotation));
         BlockBox pieceBoundingBox = poolStructurePiece.getBoundingBox();
         int centerX = (pieceBoundingBox.getMaxX() + pieceBoundingBox.getMinX()) / 2;
         int centerZ = (pieceBoundingBox.getMaxZ() + pieceBoundingBox.getMinZ()) / 2;
-        int y = placeOnTopOfTerrain ? pos.getY() + chunkGenerator.getHeightOnGround(centerX, centerZ, Heightmap.Type.WORLD_SURFACE_WG, heightLimitView) : pos.getY();
-        if (!predicate.test(chunkGenerator.getBiomeForNoiseGen(BiomeCoords.fromBlock(centerX), BiomeCoords.fromBlock(y), BiomeCoords.fromBlock(centerZ)))) {
+        int y = pos.getY() + chunkGenerator.getHeightOnGround(centerX, centerZ, Heightmap.Type.WORLD_SURFACE_WG, heightLimitView);
+        if (!validBiome.test(chunkGenerator.getBiomeForNoiseGen(BiomeCoords.fromBlock(centerX), BiomeCoords.fromBlock(y), BiomeCoords.fromBlock(centerZ)))) {
             return Optional.empty();
         }
         int l = pieceBoundingBox.getMinY() + poolStructurePiece.getGroundLevelDelta();
@@ -81,7 +83,7 @@ public class StoneholmGenerator {
             structurePoolGenerator.structurePieces.addLast(new ShapedPoolStructurePiece(poolStructurePiece, new MutableObject<>(VoxelShapes.combineAndSimplify(VoxelShapes.cuboid(box), VoxelShapes.cuboid(Box.from(pieceBoundingBox)), BooleanBiFunction.ONLY_FIRST)), 0));
             while (!structurePoolGenerator.structurePieces.isEmpty()) {
                 ShapedPoolStructurePiece shapedPoolStructurePiece = structurePoolGenerator.structurePieces.removeFirst();
-                structurePoolGenerator.generatePiece(shapedPoolStructurePiece.piece, shapedPoolStructurePiece.pieceShape, shapedPoolStructurePiece.currentSize, idk, heightLimitView);
+                structurePoolGenerator.generatePiece(shapedPoolStructurePiece.piece, shapedPoolStructurePiece.pieceShape, shapedPoolStructurePiece.currentSize, heightLimitView);
             }
             list.forEach(structurePiecesCollector::addPiece);
         });
@@ -92,13 +94,13 @@ public class StoneholmGenerator {
     }
 
     static final class StructurePoolGenerator {
-        private final Registry<StructurePool> registry;
-        private final int maxSize;
-        private final PieceFactory pieceFactory;
-        private final ChunkGenerator chunkGenerator;
-        private final StructureManager structureManager;
-        private final List<? super PoolStructurePiece> children;
-        private final Random random;
+        final Registry<StructurePool> registry;
+        final int maxSize;
+        final PieceFactory pieceFactory;
+        final ChunkGenerator chunkGenerator;
+        final StructureManager structureManager;
+        final List<? super PoolStructurePiece> children;
+        final Random random;
         final Deque<ShapedPoolStructurePiece> structurePieces = Queues.newArrayDeque();
 
         final StructurePool fallback_down;
@@ -114,12 +116,13 @@ public class StoneholmGenerator {
             this.children = children;
             this.random = random;
 
+            // TODO: Eventually move fallback pools somewhere else.
             fallback_down = registry.get(new Identifier(Stoneholm.MODID, "fallback_down_pool"));
             fallback_side = registry.get(new Identifier(Stoneholm.MODID, "fallback_side_pool"));
             end_cap = registry.get(new Identifier(Stoneholm.MODID, "end"));
         }
 
-        void generatePiece(PoolStructurePiece piece, MutableObject<VoxelShape> pieceShape, int currentSize, boolean modifyBoundingBox, HeightLimitView world) {
+        void generatePiece(PoolStructurePiece piece, MutableObject<VoxelShape> pieceShape, int currentSize, HeightLimitView world) {
             StructurePoolElement structurePoolElement = piece.getPoolElement();
             BlockPos sourcePos = piece.getPos();
             BlockRotation sourceRotation = piece.getRotation();
@@ -172,7 +175,7 @@ public class StoneholmGenerator {
                     if (iteratedStructureElement == EmptyPoolElement.INSTANCE)
                         break;
 
-                    boolean placed = tryPlacePiece(piece, currentSize, modifyBoundingBox, world, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, iteratedStructureElement, false, true);
+                    boolean placed = tryPlacePiece(piece, currentSize, world, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, iteratedStructureElement, false, currentSize >= 2);
                     if(placed)
                         break;
                 }
@@ -180,10 +183,10 @@ public class StoneholmGenerator {
         }
 
         // Returns true if we could place piece.
-        boolean tryPlacePiece(PoolStructurePiece piece, int currentSize, boolean modifyBoundingBox, HeightLimitView world, int boundsMinY, Structure.StructureBlockInfo structureBlock, MutableObject<VoxelShape> structureShape, Direction structureBlockFaceDirection, BlockPos structureBlockPosition, BlockPos structureBlockAimPosition, StructurePoolElement element, boolean skipAttachmentCheck, boolean doTerrainCheck) {
+        boolean tryPlacePiece(PoolStructurePiece piece, int currentSize, HeightLimitView world, int boundsMinY, Structure.StructureBlockInfo structureBlock, MutableObject<VoxelShape> structureShape, Direction structureBlockFaceDirection, BlockPos structureBlockPosition, BlockPos structureBlockAimPosition, StructurePoolElement element, boolean skipAttachmentCheck, boolean doTerrainCheck) {
             int j = structureBlockPosition.getY() - boundsMinY;
             int t = boundsMinY + j;
-            int r = piece.getGroundLevelDelta();
+            int pieceGroundLevelDelta = piece.getGroundLevelDelta();
 
             for (BlockRotation randomizedRotation : BlockRotation.randomRotationOrder(this.random)) {
                 // Get all structure blocks in structure.
@@ -198,20 +201,21 @@ public class StoneholmGenerator {
                     BlockPos structureBlockPos = structureBlockInfo.pos;
                     BlockPos structureBlockAimDelta = structureBlockAimPosition.subtract(structureBlockPos);
                     BlockBox iteratedStructureBoundingBox = element.getBoundingBox(this.structureManager, structureBlockAimDelta, randomizedRotation);
-                    StructurePool.Projection iteratedProjection = element.getProjection();
+
                     int structureBlockY = structureBlockPos.getY();
                     int o = j - structureBlockY + JigsawBlock.getFacing(structureBlock.state).getOffsetY();
-
                     int adjustedMinY = boundsMinY + o;
-
                     int pieceYOffset = adjustedMinY - iteratedStructureBoundingBox.getMinY();
                     BlockBox offsetBoundingBox = iteratedStructureBoundingBox.offset(0, pieceYOffset, 0);
-                    BlockPos offsetBlockPos = structureBlockAimDelta.add(0, pieceYOffset, 0);
+
+                    // If bounding boxes overlap at all; skip.
+                    if (VoxelShapes.matchesAnywhere(structureShape.getValue(), VoxelShapes.cuboid(Box.from(offsetBoundingBox).contract(0.25)), BooleanBiFunction.ONLY_SECOND))
+                        continue;
 
                     // STONEHOLM CUSTOM: Skip if top of bounding box is above terrain. This is extremely hacky. Like, genuinely this is terrible.
-                    if(doTerrainCheck) {
+                    if(doTerrainCheck && structureBlockFaceDirection != Direction.DOWN) {
                         int maxY = offsetBoundingBox.getMaxY();
-                        int maxOffset = 3;
+                        int maxOffset = 0;
 
                         boolean minCorner = maxY > chunkGenerator.getHeightOnGround(offsetBoundingBox.getMinX(), offsetBoundingBox.getMinZ(), Heightmap.Type.WORLD_SURFACE_WG, world) + maxOffset;
                         boolean maxCorner = maxY > chunkGenerator.getHeightOnGround(offsetBoundingBox.getMaxX(), offsetBoundingBox.getMaxZ(), Heightmap.Type.WORLD_SURFACE_WG, world) + maxOffset;
@@ -226,29 +230,26 @@ public class StoneholmGenerator {
                             if (overTerrainCorners > 2) {
                                 if(currentSize + 2 > maxSize)
                                     element = end_cap.getRandomElement(random);
-                                else if (structureBlockFaceDirection == Direction.DOWN)
-                                    element = fallback_down.getRandomElement(random);
-                                else if (structureBlockFaceDirection != Direction.UP)
+                                else
                                     element = fallback_side.getRandomElement(random);
                             }
 
                             // If failing switch pool elements to fallback
-                            return tryPlacePiece(piece, currentSize, modifyBoundingBox, world, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, element, true, false);
+                            return tryPlacePiece(piece, currentSize, world, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, element, true, false);
                         }
                     }
                     // END STONEHOLM CUSTOM.
 
-                    // If bounding boxes overlap at all; skip.
-                    if (VoxelShapes.matchesAnywhere(structureShape.getValue(), VoxelShapes.cuboid(Box.from(offsetBoundingBox).contract(0.25)), BooleanBiFunction.ONLY_SECOND))
-                        continue;
+                    StructurePool.Projection iteratedProjection = element.getProjection();
+                    BlockPos offsetBlockPos = structureBlockAimDelta.add(0, pieceYOffset, 0);
 
                     // All checks have passed,
                     structureShape.setValue(VoxelShapes.combine(structureShape.getValue(), VoxelShapes.cuboid(Box.from(offsetBoundingBox)), BooleanBiFunction.ONLY_FIRST));
 
-                    int s = r - o;
+                    int s = pieceGroundLevelDelta - o;
                     PoolStructurePiece poolStructurePiece = this.pieceFactory.create(this.structureManager, element, offsetBlockPos, s, randomizedRotation, offsetBoundingBox);
 
-                    piece.addJunction(new JigsawJunction(structureBlockAimPosition.getX(), t - j + r, structureBlockAimPosition.getZ(), o, iteratedProjection));
+                    piece.addJunction(new JigsawJunction(structureBlockAimPosition.getX(), t - j + pieceGroundLevelDelta, structureBlockAimPosition.getZ(), o, iteratedProjection));
                     poolStructurePiece.addJunction(new JigsawJunction(structureBlockPosition.getX(), t - structureBlockY + s, structureBlockPosition.getZ(), -o, StructurePool.Projection.RIGID));
                     this.children.add(poolStructurePiece);
 
