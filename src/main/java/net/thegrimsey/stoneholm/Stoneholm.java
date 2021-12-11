@@ -15,8 +15,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.StructureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
@@ -53,10 +55,7 @@ public class Stoneholm implements ModInitializer {
         Predicate<BiomeSelectionContext> biomes = BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.JUNGLE, Biome.Category.DESERT, Biome.Category.PLAINS, Biome.Category.SAVANNA).and(BiomeSelectors.foundInOverworld());
 
         // Add structures to biomes.
-        BiomeModifications.create(UNDERGROUNDVILLAGE_IDENTIFIER)
-                .add(ModificationPhase.ADDITIONS,
-                        biomes,
-                        context -> context.getGenerationSettings().addBuiltInStructure(SHConfiguredStructures.CONFIGURED_UNDERGROUND_VILLAGE));
+        BiomeModifications.addStructure(biomes, RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_KEY, BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE.getId(SHConfiguredStructures.CONFIGURED_UNDERGROUND_VILLAGE)));
 
         // Disable vanilla villages if chosen in config.
         if (CONFIG.disableVanillaVillages)
@@ -68,7 +67,7 @@ public class Stoneholm implements ModInitializer {
     }
 
     /*
-     *	Co-opting TelepathicGrunt's removeStructureSpawningFromSelectedDimension function for removing vanilla villages instead.
+     *	Adapting TelepathicGrunt's removeStructureSpawningFromSelectedDimension function for removing vanilla villages instead.
      * 	https://github.com/TelepathicGrunt/StructureTutorialMod/
      */
     void removeVanillaVillages() {

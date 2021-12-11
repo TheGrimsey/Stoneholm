@@ -1,6 +1,8 @@
 package net.thegrimsey.stoneholm.util;
 
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.structure.pool.StructurePool;
+import net.minecraft.structure.pool.StructurePoolElement;
 import net.thegrimsey.stoneholm.mixin.StructurePoolAccessor;
 
 import java.util.ArrayList;
@@ -11,8 +13,8 @@ public class StructurePoolUtils {
         StructurePoolAccessor primaryPoolAccessor = (StructurePoolAccessor) primaryPool;
         StructurePoolAccessor secondaryPoolAccessor = (StructurePoolAccessor) secondaryPool;
 
-        ArrayList elementCounts = new ArrayList<>(primaryPoolAccessor.getElementCounts());
-        ArrayList elements = new ArrayList<>(primaryPoolAccessor.getElements());
+        ArrayList<Pair<StructurePoolElement, Integer>> elementCounts = new ArrayList<>(primaryPoolAccessor.getElementCounts());
+        ArrayList<StructurePoolElement> elements = new ArrayList<>(primaryPoolAccessor.getElements());
 
         elementCounts.addAll(secondaryPoolAccessor.getElementCounts());
         elements.addAll(secondaryPoolAccessor.getElements());
