@@ -6,6 +6,7 @@ package net.thegrimsey.stoneholm.structures;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 import net.minecraft.block.JigsawBlock;
+import net.minecraft.block.entity.JigsawBlockEntity;
 import net.minecraft.structure.*;
 import net.minecraft.structure.pool.EmptyPoolElement;
 import net.minecraft.structure.pool.StructurePool;
@@ -71,6 +72,7 @@ public class StoneholmGenerator {
         }
         int l = pieceBoundingBox.getMinY() + poolStructurePiece.getGroundLevelDelta();
         poolStructurePiece.translate(0, y - l, 0);
+
         return Optional.of((structurePiecesCollector, context) -> {
             ArrayList<PoolStructurePiece> list = Lists.newArrayList();
             list.add(poolStructurePiece);
@@ -80,10 +82,12 @@ public class StoneholmGenerator {
 
             Box box = new Box(centerX - 80, y - 80, centerZ - 80, centerX + 80 + 1, y + 80 + 1, centerZ + 80 + 1);
             StructurePoolGenerator structurePoolGenerator = new StructurePoolGenerator(registry, structurePoolFeatureConfig.getSize(), pieceFactory, chunkGenerator, structureManager, list, chunkRandom);
-            structurePoolGenerator.structurePieces.addLast(new ShapedPoolStructurePiece(poolStructurePiece, new MutableObject<>(VoxelShapes.combineAndSimplify(VoxelShapes.cuboid(box), VoxelShapes.cuboid(Box.from(pieceBoundingBox)), BooleanBiFunction.ONLY_FIRST)), 0));
+            structurePoolGenerator.structurePieces.addLast(new ShapedPoolStructurePiece(poolStructurePiece, new MutableObject<>(VoxelShapes.combineAndSimplify(VoxelShapes.cuboid(box), VoxelShapes.cuboid(Box.from(pieceBoundingBox)), BooleanBiFunction.ONLY_FIRST)), 0, null));
+
+            // Go through all structure pieces in the project.
             while (!structurePoolGenerator.structurePieces.isEmpty()) {
                 ShapedPoolStructurePiece shapedPoolStructurePiece = structurePoolGenerator.structurePieces.removeFirst();
-                structurePoolGenerator.generatePiece(shapedPoolStructurePiece.piece, shapedPoolStructurePiece.pieceShape, shapedPoolStructurePiece.currentSize, heightLimitView);
+                structurePoolGenerator.generatePiece(shapedPoolStructurePiece.piece, shapedPoolStructurePiece.pieceShape, shapedPoolStructurePiece.currentSize, shapedPoolStructurePiece.sourceBlockPos, heightLimitView);
             }
             list.forEach(structurePiecesCollector::addPiece);
         });
@@ -107,6 +111,20 @@ public class StoneholmGenerator {
         final StructurePool fallback_side;
         final StructurePool end_cap;
 
+        // Terrible hack.
+        static final HashSet<Identifier> ignoredPools = new HashSet<>(Arrays.asList(
+                new Identifier(Stoneholm.MODID, "bee"),
+                new Identifier(Stoneholm.MODID, "deco_blocks"),
+                new Identifier(Stoneholm.MODID, "deco_coverings"),
+                new Identifier(Stoneholm.MODID, "deco_wallpapers"),
+                new Identifier(Stoneholm.MODID, "iron_golem"),
+                new Identifier(Stoneholm.MODID, "villagers"),
+                new Identifier(Stoneholm.MODID, "armor_stands")
+        ));
+
+        boolean hasForcedBedroom = false;
+        float
+
         StructurePoolGenerator(Registry<StructurePool> registry, int maxSize, PieceFactory pieceFactory, ChunkGenerator chunkGenerator, StructureManager structureManager, List<? super PoolStructurePiece> children, Random random) {
             this.registry = registry;
             this.maxSize = maxSize;
@@ -122,7 +140,7 @@ public class StoneholmGenerator {
             end_cap = registry.get(new Identifier(Stoneholm.MODID, "end"));
         }
 
-        void generatePiece(PoolStructurePiece piece, MutableObject<VoxelShape> pieceShape, int currentSize, HeightLimitView world) {
+        void generatePiece(PoolStructurePiece piece, MutableObject<VoxelShape> pieceShape, int currentSize, BlockPos sourceStructureBlockPos, HeightLimitView world) {
             StructurePoolElement structurePoolElement = piece.getPoolElement();
             BlockPos sourcePos = piece.getPos();
             BlockRotation sourceRotation = piece.getRotation();
@@ -130,8 +148,13 @@ public class StoneholmGenerator {
             BlockBox sourceBoundingBox = piece.getBoundingBox();
             int boundsMinY = sourceBoundingBox.getMinY();
 
+            BlockPos sourceBlock = sourcePos.add(sourceStructureBlockPos == null ? BlockPos.ORIGIN : sourceStructureBlockPos);
+
             // For every structure block in the piece.
             for (Structure.StructureBlockInfo structureBlock : structurePoolElement.getStructureBlockInfos(this.structureManager, sourcePos, sourceRotation, this.random)) {
+                if(sourceBlock.equals(structureBlock.pos))
+                    continue;
+
                 MutableObject<VoxelShape> structureShape;
                 Direction structureBlockFaceDirection = JigsawBlock.getFacing(structureBlock.state);
                 BlockPos structureBlockPosition = structureBlock.pos;
@@ -144,6 +167,8 @@ public class StoneholmGenerator {
                     LOGGER.warn("Empty or non-existent pool: {}", structureBlockTargetPoolId);
                     continue;
                 }
+
+                boolean ignoredPool = ignoredPools.contains(structureBlockTargetPoolId);
 
                 // Get end cap pool for target pool.
                 Identifier terminatorPoolId = targetPool.get().getTerminatorsId();
@@ -175,7 +200,7 @@ public class StoneholmGenerator {
                     if (iteratedStructureElement == EmptyPoolElement.INSTANCE)
                         break;
 
-                    boolean placed = tryPlacePiece(piece, currentSize, world, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, iteratedStructureElement, false, currentSize >= 2);
+                    boolean placed = tryPlacePiece(piece, currentSize, world, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, iteratedStructureElement, currentSize >= 2 || !ignoredPool);
                     if(placed)
                         break;
                 }
@@ -183,7 +208,7 @@ public class StoneholmGenerator {
         }
 
         // Returns true if we could place piece.
-        boolean tryPlacePiece(PoolStructurePiece piece, int currentSize, HeightLimitView world, int boundsMinY, Structure.StructureBlockInfo structureBlock, MutableObject<VoxelShape> structureShape, Direction structureBlockFaceDirection, BlockPos structureBlockPosition, BlockPos structureBlockAimPosition, StructurePoolElement element, boolean skipAttachmentCheck, boolean doTerrainCheck) {
+        boolean tryPlacePiece(PoolStructurePiece piece, int currentSize, HeightLimitView world, int boundsMinY, Structure.StructureBlockInfo structureBlock, MutableObject<VoxelShape> structureShape, Direction structureBlockFaceDirection, BlockPos structureBlockPosition, BlockPos structureBlockAimPosition, StructurePoolElement element, boolean doTerrainCheck) {
             int j = structureBlockPosition.getY() - boundsMinY;
             int t = boundsMinY + j;
             int pieceGroundLevelDelta = piece.getGroundLevelDelta();
@@ -195,7 +220,7 @@ public class StoneholmGenerator {
                 // Loop through all blocks in piece we are trying to place.
                 for (Structure.StructureBlockInfo structureBlockInfo : structureBlocksInStructure) {
                     // If the attachment ID doesn't match then skip this one.
-                    if (!skipAttachmentCheck && !JigsawBlock.attachmentMatches(structureBlock, structureBlockInfo))
+                    if (!JigsawBlock.attachmentMatches(structureBlock, structureBlockInfo))
                         continue;
 
                     BlockPos structureBlockPos = structureBlockInfo.pos;
@@ -235,7 +260,7 @@ public class StoneholmGenerator {
                             }
 
                             // If failing switch pool elements to fallback
-                            return tryPlacePiece(piece, currentSize, world, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, element, true, false);
+                            return tryPlacePiece(piece, currentSize, boundsMinY, structureBlock, structureShape, structureBlockPosition, structureBlockAimPosition, element);
                         }
                     }
                     // END STONEHOLM CUSTOM.
@@ -253,8 +278,8 @@ public class StoneholmGenerator {
                     poolStructurePiece.addJunction(new JigsawJunction(structureBlockPosition.getX(), t - structureBlockY + s, structureBlockPosition.getZ(), -o, StructurePool.Projection.RIGID));
                     this.children.add(poolStructurePiece);
 
-                    if (!(currentSize + 1 > this.maxSize)) // TODO Clean up.
-                        this.structurePieces.addLast(new ShapedPoolStructurePiece(poolStructurePiece, structureShape, currentSize + 1));
+                    if (currentSize + 1 <= this.maxSize) // Whilst this is not the end.
+                        this.structurePieces.addLast(new ShapedPoolStructurePiece(poolStructurePiece, structureShape, currentSize + 1, structureBlockPos));
 
                     return true;
                 }
@@ -262,8 +287,71 @@ public class StoneholmGenerator {
 
             return false;
         }
+
+        // Returns true if we could place piece.
+        boolean tryPlacePiece(PoolStructurePiece piece, int currentSize, int boundsMinY, Structure.StructureBlockInfo structureBlock, MutableObject<VoxelShape> structureShape, BlockPos structureBlockPosition, BlockPos structureBlockAimPosition, StructurePoolElement element) {
+            int j = structureBlockPosition.getY() - boundsMinY;
+            int t = boundsMinY + j;
+            int pieceGroundLevelDelta = piece.getGroundLevelDelta();
+
+            for (BlockRotation randomizedRotation : BlockRotation.randomRotationOrder(this.random)) {
+                // Get all structure blocks in structure.
+                List<Structure.StructureBlockInfo> structureBlocksInStructure = element.getStructureBlockInfos(this.structureManager, BlockPos.ORIGIN, randomizedRotation, this.random);
+
+                // Loop through all blocks in piece we are trying to place.
+                for (Structure.StructureBlockInfo structureBlockInfo : structureBlocksInStructure) {
+                    // If the attachment ID doesn't match then skip this one.
+                    if (JigsawBlock.attachmentMatches(structureBlock, structureBlockInfo))
+                        continue;
+
+                    BlockPos structureBlockPos = structureBlockInfo.pos;
+                    BlockPos structureBlockAimDelta = structureBlockAimPosition.subtract(structureBlockPos);
+                    BlockBox iteratedStructureBoundingBox = element.getBoundingBox(this.structureManager, structureBlockAimDelta, randomizedRotation);
+
+                    int structureBlockY = structureBlockPos.getY();
+                    int o = j - structureBlockY + JigsawBlock.getFacing(structureBlock.state).getOffsetY();
+                    int adjustedMinY = boundsMinY + o;
+                    int pieceYOffset = adjustedMinY - iteratedStructureBoundingBox.getMinY();
+                    BlockBox offsetBoundingBox = iteratedStructureBoundingBox.offset(0, pieceYOffset, 0);
+
+                    // If bounding boxes overlap at all; skip.
+                    if (VoxelShapes.matchesAnywhere(structureShape.getValue(), VoxelShapes.cuboid(Box.from(offsetBoundingBox).contract(0.25)), BooleanBiFunction.ONLY_SECOND))
+                        continue;
+
+                    StructurePool.Projection iteratedProjection = element.getProjection();
+                    BlockPos offsetBlockPos = structureBlockAimDelta.add(0, pieceYOffset, 0);
+
+                    // All checks have passed,
+                    structureShape.setValue(VoxelShapes.combine(structureShape.getValue(), VoxelShapes.cuboid(Box.from(offsetBoundingBox)), BooleanBiFunction.ONLY_FIRST));
+
+                    int s = pieceGroundLevelDelta - o;
+                    PoolStructurePiece poolStructurePiece = this.pieceFactory.create(this.structureManager, element, offsetBlockPos, s, randomizedRotation, offsetBoundingBox);
+
+                    piece.addJunction(new JigsawJunction(structureBlockAimPosition.getX(), t - j + pieceGroundLevelDelta, structureBlockAimPosition.getZ(), o, iteratedProjection));
+                    poolStructurePiece.addJunction(new JigsawJunction(structureBlockPosition.getX(), t - structureBlockY + s, structureBlockPosition.getZ(), -o, StructurePool.Projection.RIGID));
+                    this.children.add(poolStructurePiece);
+
+                    if (currentSize + 1 <= this.maxSize) // Whilst this is not the end.
+                        this.structurePieces.addLast(new ShapedPoolStructurePiece(poolStructurePiece, structureShape, currentSize + 1, structureBlockPos));
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        static boolean attachmentMatches(Structure.StructureBlockInfo info1, Structure.StructureBlockInfo info2) {
+            Direction facing = JigsawBlock.getFacing(info1.state);
+            Direction facing2 = JigsawBlock.getFacing(info2.state);
+            Direction rotation = JigsawBlock.getRotation(info1.state);
+            Direction rotation2 = JigsawBlock.getRotation(info2.state);
+            JigsawBlockEntity.Joint joint = JigsawBlockEntity.Joint.byName(info1.nbt.getString("joint")).orElseGet(() -> facing.getAxis().isHorizontal() ? JigsawBlockEntity.Joint.ALIGNED : JigsawBlockEntity.Joint.ROLLABLE);
+            boolean bl = joint == JigsawBlockEntity.Joint.ROLLABLE;
+            return facing == facing2.getOpposite() && (bl || rotation == rotation2); // && info1.nbt.getString("target").equals(info2.nbt.getString("name"));
+        }
     }
 
-    record ShapedPoolStructurePiece(PoolStructurePiece piece, MutableObject<VoxelShape> pieceShape, int currentSize) {}
+    record ShapedPoolStructurePiece(PoolStructurePiece piece, MutableObject<VoxelShape> pieceShape, int currentSize, BlockPos sourceBlockPos) {}
 }
 
