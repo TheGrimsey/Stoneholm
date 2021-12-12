@@ -1,9 +1,7 @@
 package net.thegrimsey.stoneholm;
 
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -79,7 +77,6 @@ public class Stoneholm implements ModInitializer {
                 });
                 immutableStructureMap.put(SHConfiguredStructures.CONFIGURED_UNDERGROUND_VILLAGE.feature, structureImmutableMapBuilder.build());
 
-                // Set it in the field.
                 ((StructuresConfigAccessor) structureSettings).setConfiguredStructures(immutableStructureMap.build());
             }
         });

@@ -6,11 +6,9 @@ import net.minecraft.structure.StructureGeneratorFactory;
 import net.minecraft.structure.StructurePiecesGenerator;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 import net.thegrimsey.stoneholm.Stoneholm;
-import net.thegrimsey.stoneholm.mixin.StructurePoolFeatureConfigAccessor;
 
 import java.util.Optional;
 
@@ -28,10 +26,6 @@ public class UnderGroundVillageStructure extends StructureFeature<StructurePoolF
 
         // Position, set Y to 1 to offset height up.
         BlockPos blockPos = new BlockPos(x, 1, z);
-
-        // TODO: We don't really need to do this since we have our own generator class now but I don't want to mess with it right now.
-        ((StructurePoolFeatureConfigAccessor)context.config()).setStructures(() -> context.registryManager().get(Registry.STRUCTURE_POOL_KEY).get(START_POOL));
-        ((StructurePoolFeatureConfigAccessor)context.config()).setSize(Stoneholm.CONFIG.VILLAGE_SIZE);
 
         return StoneholmGenerator.generate(context, PoolStructurePiece::new, blockPos);
     }

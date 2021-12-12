@@ -5,8 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "StructuresConfigAccessor",
-    "StructurePoolAccessor",
-    "StructurePoolFeatureConfigAccessor"
+    "StructurePoolAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

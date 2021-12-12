@@ -6,7 +6,6 @@ package net.thegrimsey.stoneholm.structures;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 import net.minecraft.block.JigsawBlock;
-import net.minecraft.block.entity.JigsawBlockEntity;
 import net.minecraft.structure.*;
 import net.minecraft.structure.pool.EmptyPoolElement;
 import net.minecraft.structure.pool.StructurePool;
@@ -43,45 +42,47 @@ import java.util.function.Predicate;
 public class StoneholmGenerator {
     static final Logger LOGGER = LogManager.getLogger();
 
-    public static Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> generate(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context2, PieceFactory pieceFactory, BlockPos pos) {
+    public static Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> generate(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> inContext, PieceFactory pieceFactory, BlockPos pos) {
+        int size = Stoneholm.CONFIG.VILLAGE_SIZE;
+        if (size <= 0)
+            return Optional.empty();
+
+        DynamicRegistryManager registryManager = inContext.registryManager();
+        Registry<StructurePool> registry = registryManager.get(Registry.STRUCTURE_POOL_KEY);
+        StructurePool structurePool = registry.get(UnderGroundVillageStructure.START_POOL);
+
         ChunkRandom chunkRandom = new ChunkRandom(new AtomicSimpleRandom(0L));
-        chunkRandom.setCarverSeed(context2.seed(), context2.chunkPos().x, context2.chunkPos().z);
-        DynamicRegistryManager registryManager = context2.registryManager();
-        StructurePoolFeatureConfig structurePoolFeatureConfig = context2.config();
-        ChunkGenerator chunkGenerator = context2.chunkGenerator();
-        StructureManager structureManager = context2.structureManager();
-        HeightLimitView heightLimitView = context2.world();
-        Predicate<Biome> validBiome = context2.validBiome();
+        chunkRandom.setCarverSeed(inContext.seed(), inContext.chunkPos().x, inContext.chunkPos().z);
+
+        StructurePoolElement startingElement = structurePool.getRandomElement(chunkRandom);
+        if (startingElement == EmptyPoolElement.INSTANCE)
+            return Optional.empty();
+
+        ChunkGenerator chunkGenerator = inContext.chunkGenerator();
+        StructureManager structureManager = inContext.structureManager();
+        HeightLimitView heightLimitView = inContext.world();
+        Predicate<Biome> biomePredicate = inContext.validBiome();
         StructureFeature.init();
 
-        Registry<StructurePool> registry = registryManager.get(Registry.STRUCTURE_POOL_KEY);
         BlockRotation blockRotation = BlockRotation.random(chunkRandom);
-        StructurePool structurePool = structurePoolFeatureConfig.getStartPool().get();
-        StructurePoolElement structurePoolElement = structurePool.getRandomElement(chunkRandom);
-        if (structurePoolElement == EmptyPoolElement.INSTANCE) {
-            return Optional.empty();
-        }
-
-        PoolStructurePiece poolStructurePiece = pieceFactory.create(structureManager, structurePoolElement, pos, structurePoolElement.getGroundLevelDelta(), blockRotation, structurePoolElement.getBoundingBox(structureManager, pos, blockRotation));
+        PoolStructurePiece poolStructurePiece = pieceFactory.create(structureManager, startingElement, pos, startingElement.getGroundLevelDelta(), blockRotation, startingElement.getBoundingBox(structureManager, pos, blockRotation));
         BlockBox pieceBoundingBox = poolStructurePiece.getBoundingBox();
+
         int centerX = (pieceBoundingBox.getMaxX() + pieceBoundingBox.getMinX()) / 2;
         int centerZ = (pieceBoundingBox.getMaxZ() + pieceBoundingBox.getMinZ()) / 2;
         int y = pos.getY() + chunkGenerator.getHeightOnGround(centerX, centerZ, Heightmap.Type.WORLD_SURFACE_WG, heightLimitView);
-        if (!validBiome.test(chunkGenerator.getBiomeForNoiseGen(BiomeCoords.fromBlock(centerX), BiomeCoords.fromBlock(y), BiomeCoords.fromBlock(centerZ)))) {
+
+        if (!biomePredicate.test(chunkGenerator.getBiomeForNoiseGen(BiomeCoords.fromBlock(centerX), BiomeCoords.fromBlock(y), BiomeCoords.fromBlock(centerZ))))
             return Optional.empty();
-        }
-        int l = pieceBoundingBox.getMinY() + poolStructurePiece.getGroundLevelDelta();
-        poolStructurePiece.translate(0, y - l, 0);
+
+        int yOffset = pieceBoundingBox.getMinY() + poolStructurePiece.getGroundLevelDelta();
+        poolStructurePiece.translate(0, y - yOffset, 0);
 
         return Optional.of((structurePiecesCollector, context) -> {
-            ArrayList<PoolStructurePiece> list = Lists.newArrayList();
-            list.add(poolStructurePiece);
-            if (structurePoolFeatureConfig.getSize() <= 0) {
-                return;
-            }
+            ArrayList<PoolStructurePiece> list = Lists.newArrayList(poolStructurePiece);
 
             Box box = new Box(centerX - 80, y - 80, centerZ - 80, centerX + 80 + 1, y + 80 + 1, centerZ + 80 + 1);
-            StoneholmStructurePoolGenerator structurePoolGenerator = new StoneholmStructurePoolGenerator(registry, structurePoolFeatureConfig.getSize(), pieceFactory, chunkGenerator, structureManager, list, chunkRandom);
+            StoneholmStructurePoolGenerator structurePoolGenerator = new StoneholmStructurePoolGenerator(registry, size, pieceFactory, chunkGenerator, structureManager, list, chunkRandom);
             structurePoolGenerator.structurePieces.addLast(new StoneholmShapedPoolStructurePiece(poolStructurePiece, new MutableObject<>(VoxelShapes.combineAndSimplify(VoxelShapes.cuboid(box), VoxelShapes.cuboid(Box.from(pieceBoundingBox)), BooleanBiFunction.ONLY_FIRST)), 0, null));
 
             // Go through all structure pieces in the project.
@@ -111,8 +112,8 @@ public class StoneholmGenerator {
         final StructurePool fallback_side;
         final StructurePool end_cap;
 
-        // Terrible hack.
-        static final HashSet<Identifier> ignoredPools = new HashSet<>(Arrays.asList(
+        // Terrible hack. Ignore these pools when doing terrainchecks.
+        static final HashSet<Identifier> terrainCheckIgnoredPools = new HashSet<>(Arrays.asList(
                 new Identifier(Stoneholm.MODID, "bee"),
                 new Identifier(Stoneholm.MODID, "deco_blocks"),
                 new Identifier(Stoneholm.MODID, "deco_coverings"),
@@ -165,7 +166,7 @@ public class StoneholmGenerator {
                     continue;
                 }
 
-                boolean ignoredPool = ignoredPools.contains(structureBlockTargetPoolId);
+                boolean ignoredPool = terrainCheckIgnoredPools.contains(structureBlockTargetPoolId);
 
                 // Get end cap pool for target pool.
                 Identifier terminatorPoolId = targetPool.get().getTerminatorsId();
