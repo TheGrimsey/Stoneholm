@@ -15,7 +15,7 @@ import net.thegrimsey.stoneholm.mixin.StructurePoolFeatureConfigAccessor;
 import java.util.Optional;
 
 public class UnderGroundVillageStructure extends StructureFeature<StructurePoolFeatureConfig> {
-    public static Identifier START_POOL = new Identifier(Stoneholm.MODID, "start_pool");
+    public static final Identifier START_POOL = new Identifier(Stoneholm.MODID, "start_pool");
 
     public UnderGroundVillageStructure(Codec<StructurePoolFeatureConfig> codec) {
         super(codec, UnderGroundVillageStructure::createPiecesGenerator);
@@ -26,9 +26,10 @@ public class UnderGroundVillageStructure extends StructureFeature<StructurePoolF
         int x = context.chunkPos().x << 4;
         int z = context.chunkPos().z << 4;
 
-        // Position, we don't care about Y as we will just be placed on top on the terrain.
-        BlockPos blockPos = new BlockPos(x, 0, z);
+        // Position, set Y to 1 to offset height up.
+        BlockPos blockPos = new BlockPos(x, 1, z);
 
+        // TODO: We don't really need to do this since we have our own generator class now but I don't want to mess with it right now.
         ((StructurePoolFeatureConfigAccessor)context.config()).setStructures(() -> context.registryManager().get(Registry.STRUCTURE_POOL_KEY).get(START_POOL));
         ((StructurePoolFeatureConfigAccessor)context.config()).setSize(Stoneholm.CONFIG.VILLAGE_SIZE);
 

@@ -3,14 +3,12 @@ package net.thegrimsey.stoneholm;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.chunk.StructureConfig;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 import net.thegrimsey.stoneholm.structures.UnderGroundVillageStructure;
 
 public class SHStructures {
-    public static StructureFeature<StructurePoolFeatureConfig> UNDERGROUND_VILLAGE = new UnderGroundVillageStructure(StructurePoolFeatureConfig.CODEC);
+    public static final StructureFeature<StructurePoolFeatureConfig> UNDERGROUND_VILLAGE = new UnderGroundVillageStructure(StructurePoolFeatureConfig.CODEC);
 
     public static void registerStructureFeatures() {
         // Create structure config using config values.

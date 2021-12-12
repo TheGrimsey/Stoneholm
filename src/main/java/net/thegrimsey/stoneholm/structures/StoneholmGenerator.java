@@ -337,16 +337,6 @@ public class StoneholmGenerator {
 
             return false;
         }
-
-        static boolean attachmentMatches(Structure.StructureBlockInfo info1, Structure.StructureBlockInfo info2) {
-            Direction facing = JigsawBlock.getFacing(info1.state);
-            Direction facing2 = JigsawBlock.getFacing(info2.state);
-            Direction rotation = JigsawBlock.getRotation(info1.state);
-            Direction rotation2 = JigsawBlock.getRotation(info2.state);
-            JigsawBlockEntity.Joint joint = JigsawBlockEntity.Joint.byName(info1.nbt.getString("joint")).orElseGet(() -> facing.getAxis().isHorizontal() ? JigsawBlockEntity.Joint.ALIGNED : JigsawBlockEntity.Joint.ROLLABLE);
-            boolean bl = joint == JigsawBlockEntity.Joint.ROLLABLE;
-            return facing == facing2.getOpposite() && (bl || rotation == rotation2); // && info1.nbt.getString("target").equals(info2.nbt.getString("name"));
-        }
     }
 
     record StoneholmShapedPoolStructurePiece(PoolStructurePiece piece, MutableObject<VoxelShape> pieceShape, int currentSize, BlockPos sourceBlockPos) {}
