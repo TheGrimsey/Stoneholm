@@ -1,10 +1,16 @@
 # Stoneholm
 
-Stoneholm is a **Fabric mod** for **1.17** that adds underground villages to the world. Inspired by Strongholds and Villages (surprise, huh?).
+Stoneholm is a **Fabric mod** for **1.18** that adds underground villages to the world. Inspired by Strongholds and Villages (surprise, huh?).
 
 Explore underground villages that have grown into mazes of hallways, stairs, workspaces, abandoned sections, and overgrown areas.
 
 **Backports** will not be done.
+
+# Downloads
+Stoneholm is primarily available on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/stoneholm) ([Forge version](https://www.curseforge.com/minecraft/mc-mods/stoneholm))
+
+# Forge version
+The source code for the forge version is available at [TheGrimsey/StoneholmForge](https://github.com/TheGrimsey/Stoneholm/StoneholmForge)
 
 # Requirements
 
