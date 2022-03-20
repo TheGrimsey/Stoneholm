@@ -2,7 +2,7 @@ package net.thegrimsey.stoneholm;
 
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.chunk.StructureConfig;
+import net.minecraft.world.gen.chunk.placement.StructurePlacement;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 import net.thegrimsey.stoneholm.structures.UnderGroundVillageStructure;

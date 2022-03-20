@@ -12,7 +12,4 @@ public class SHConfig implements ConfigData {
     public int VILLAGE_SPACING = 32;
     @Comment("Minimum distance in chunks between villages. (Default: 8)")
     public int VILLAGE_SEPARATION = 8;
-
-    @Comment("Whether to disable generating vanilla villages. (Default: false)")
-    public boolean disableVanillaVillages = false;
 }

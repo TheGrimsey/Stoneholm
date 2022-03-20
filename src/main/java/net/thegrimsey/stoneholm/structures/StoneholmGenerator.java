@@ -20,6 +20,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.HeightLimitView;
@@ -61,7 +62,7 @@ public class StoneholmGenerator {
         ChunkGenerator chunkGenerator = inContext.chunkGenerator();
         StructureManager structureManager = inContext.structureManager();
         HeightLimitView heightLimitView = inContext.world();
-        Predicate<Biome> biomePredicate = inContext.validBiome();
+        Predicate<RegistryEntry<Biome>> biomePredicate = inContext.validBiome();
         StructureFeature.init();
 
         BlockRotation blockRotation = BlockRotation.random(chunkRandom);
