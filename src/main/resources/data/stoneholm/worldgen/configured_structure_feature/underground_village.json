@@ -1,0 +1,15 @@
+{
+  "type": "stoneholm:underground_village",
+
+  "config": {
+    "start_pool": "stoneholm:start_pool",
+    "size": 2
+  },
+
+  "biomes": "#stoneholm:has_structure/underground_village",
+
+  "adapt_noise": false,
+
+  "spawn_overrides": {
+  }
+}

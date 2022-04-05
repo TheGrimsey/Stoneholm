@@ -2,6 +2,7 @@ package net.thegrimsey.stoneholm.structures;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.structure.PoolStructurePiece;
+import net.minecraft.structure.PostPlacementProcessor;
 import net.minecraft.structure.StructureGeneratorFactory;
 import net.minecraft.structure.StructurePiecesGenerator;
 import net.minecraft.util.Identifier;
@@ -16,7 +17,7 @@ public class UnderGroundVillageStructure extends StructureFeature<StructurePoolF
     public static final Identifier START_POOL = new Identifier(Stoneholm.MODID, "start_pool");
 
     public UnderGroundVillageStructure(Codec<StructurePoolFeatureConfig> codec) {
-        super(codec, UnderGroundVillageStructure::createPiecesGenerator);
+        super(codec, UnderGroundVillageStructure::createPiecesGenerator, PostPlacementProcessor.EMPTY);
     }
 
     public static Optional<StructurePiecesGenerator<StructurePoolFeatureConfig>> createPiecesGenerator(StructureGeneratorFactory.Context<StructurePoolFeatureConfig> context) {

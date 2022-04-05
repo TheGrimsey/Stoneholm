@@ -1,10 +1,9 @@
 package net.thegrimsey.stoneholm;
 
-import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.chunk.placement.StructurePlacement;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
+import net.thegrimsey.stoneholm.mixin.StructureFeatureAccessor;
 import net.thegrimsey.stoneholm.structures.UnderGroundVillageStructure;
 
 public class SHStructures {
@@ -12,11 +11,6 @@ public class SHStructures {
 
     public static void registerStructureFeatures() {
         // Create structure config using config values.
-        StructureConfig structureConfig = new StructureConfig(Stoneholm.CONFIG.VILLAGE_SPACING, Stoneholm.CONFIG.VILLAGE_SEPARATION, 8699777);
-
-        FabricStructureBuilder.create(Stoneholm.UNDERGROUNDVILLAGE_IDENTIFIER, UNDERGROUND_VILLAGE)
-                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(structureConfig)
-                .register();
+        StructureFeatureAccessor.callRegister(Stoneholm.UNDERGROUNDVILLAGE_IDENTIFIER.toString(), UNDERGROUND_VILLAGE, GenerationStep.Feature.SURFACE_STRUCTURES);
     }
 }
