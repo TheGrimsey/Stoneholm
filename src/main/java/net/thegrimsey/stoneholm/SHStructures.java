@@ -1,16 +1,22 @@
 package net.thegrimsey.stoneholm;
 
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.StructureFeature;
-import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
-import net.thegrimsey.stoneholm.mixin.StructureFeatureAccessor;
+import com.mojang.serialization.Codec;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.structure.Structure;
+import net.minecraft.world.gen.structure.StructureType;
 import net.thegrimsey.stoneholm.structures.UnderGroundVillageStructure;
 
 public class SHStructures {
-    public static final StructureFeature<StructurePoolFeatureConfig> UNDERGROUND_VILLAGE = new UnderGroundVillageStructure(StructurePoolFeatureConfig.CODEC);
+    public static StructureType<?> UNDERGROUND_VILLAGE = null;
 
     public static void registerStructureFeatures() {
         // Create structure config using config values.
-        StructureFeatureAccessor.callRegister(Stoneholm.UNDERGROUNDVILLAGE_IDENTIFIER.toString(), UNDERGROUND_VILLAGE, GenerationStep.Feature.SURFACE_STRUCTURES);
+        UNDERGROUND_VILLAGE = register(Stoneholm.UNDERGROUNDVILLAGE_IDENTIFIER.toString(), UnderGroundVillageStructure.CODEC);
+    }
+
+    private static <S extends Structure> StructureType register(String id, Codec<Structure> codec) {
+        return Registry.register(Registry.STRUCTURE_TYPE, id, () -> {
+            return codec;
+        });
     }
 }
