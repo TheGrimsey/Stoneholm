@@ -6,11 +6,12 @@ package net.thegrimsey.stoneholm.structures;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 import net.minecraft.block.JigsawBlock;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.structure.*;
-import net.minecraft.structure.pool.EmptyPoolElement;
-import net.minecraft.structure.pool.StructurePool;
-import net.minecraft.structure.pool.StructurePoolElement;
-import net.minecraft.structure.pool.StructurePools;
+import net.minecraft.structure.pool.*;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -19,16 +20,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.ChunkRandom;
-import net.minecraft.util.registry.DynamicRegistryManager;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeCoords;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.noise.NoiseConfig;
 import net.minecraft.world.gen.structure.Structure;
@@ -49,7 +46,7 @@ public class StoneholmGenerator {
             return Optional.empty();
 
         DynamicRegistryManager registryManager = inContext.dynamicRegistryManager();
-        Registry<StructurePool> registry = registryManager.get(Registry.STRUCTURE_POOL_KEY);
+        Registry<StructurePool> registry = registryManager.get(RegistryKeys.TEMPLATE_POOL);
         StructurePool structurePool = registry.get(UnderGroundVillageStructure.START_POOL);
 
         ChunkRandom chunkRandom = new ChunkRandom(inContext.random());
@@ -164,10 +161,10 @@ public class StoneholmGenerator {
                 boolean ignoredPool = terrainCheckIgnoredPools.contains(structureBlockTargetPoolId);
 
                 // Get end cap pool for target pool.
-                Identifier terminatorPoolId = targetPool.get().getTerminatorsId();
-                Optional<StructurePool> terminatorPool = this.registry.getOrEmpty(terminatorPoolId);
-                if (terminatorPool.isEmpty() || terminatorPool.get().getElementCount() == 0 && !Objects.equals(terminatorPoolId, StructurePools.EMPTY.getValue())) {
-                    LOGGER.warn("Empty or non-existent fallback pool: {}", terminatorPoolId);
+                RegistryEntry<StructurePool> entry = targetPool.get().getFallback();
+                StructurePool fallbackPool = entry.value();
+                if (fallbackPool.getElementCount() == 0 && !entry.matchesKey(StructurePools.EMPTY)) {
+                    LOGGER.warn("Empty or non-existent fallback pool: {}", entry.getKey().get().getValue());
                     continue;
                 }
 
@@ -187,7 +184,7 @@ public class StoneholmGenerator {
                 if (currentSize < this.maxSize) {
                     possibleElementsToSpawn.addAll(targetPool.get().getElementIndicesInRandomOrder(this.random)); // Add in pool elements if we haven't reached max size.
                 }
-                possibleElementsToSpawn.addAll(terminatorPool.get().getElementIndicesInRandomOrder(this.random)); // Add in terminator elements.
+                possibleElementsToSpawn.addAll(fallbackPool.getElementIndicesInRandomOrder(this.random)); // Add in terminator elements.
 
                 for (StructurePoolElement iteratedStructureElement : possibleElementsToSpawn) {
                     if (iteratedStructureElement == EmptyPoolElement.INSTANCE)

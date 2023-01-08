@@ -5,12 +5,14 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.DynamicRegistryManager;
-import net.minecraft.util.registry.Registry;
 import net.thegrimsey.stoneholm.structures.NoWaterProcessor;
 import net.thegrimsey.stoneholm.util.StructurePoolUtils;
 
@@ -30,14 +32,14 @@ public class Stoneholm implements ModInitializer {
 
         // Register structures & configured structures.
         SHStructures.registerStructureFeatures();
-        Registry.register(Registry.STRUCTURE_PROCESSOR, new Identifier(MODID, "nowater_processor"), NOWATER_PROCESSOR);
+        Registry.register(Registries.STRUCTURE_PROCESSOR, new Identifier(MODID, "nowater_processor"), NOWATER_PROCESSOR);
 
         ServerLifecycleEvents.SERVER_STARTING.register((MinecraftServer server) -> handleModSupport(server.getRegistryManager()));
     }
 
     void handleModSupport(DynamicRegistryManager registry)
     {
-        Registry<StructurePool> structurePoolRegistry = registry.get(Registry.STRUCTURE_POOL_KEY);
+        Registry<StructurePool> structurePoolRegistry = registry.get(RegistryKeys.TEMPLATE_POOL);
 
         // TODO: This should really be defined in JSON or something.
 
