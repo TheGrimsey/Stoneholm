@@ -11,6 +11,7 @@ import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.util.registry.Registry;
+import net.thegrimsey.stoneholm.structures.CandleProcessor;
 import net.thegrimsey.stoneholm.structures.NoWaterProcessor;
 import net.thegrimsey.stoneholm.util.StructurePoolUtils;
 
@@ -19,6 +20,7 @@ public class Stoneholm implements ModInitializer {
     public static final Identifier UNDERGROUNDVILLAGE_IDENTIFIER = new Identifier(Stoneholm.MODID, "underground_village");
     public static SHConfig CONFIG;
     public static final StructureProcessorType<NoWaterProcessor> NOWATER_PROCESSOR = () -> NoWaterProcessor.CODEC;
+    public static final StructureProcessorType<CandleProcessor> CANDLE_PROCESSOR = () -> CandleProcessor.CODEC;
 
     // Suppress deprecation warnings from Fabric's Biome API.
     @Override
@@ -31,6 +33,7 @@ public class Stoneholm implements ModInitializer {
         // Register structures & configured structures.
         SHStructures.registerStructureFeatures();
         Registry.register(Registry.STRUCTURE_PROCESSOR, new Identifier(MODID, "nowater_processor"), NOWATER_PROCESSOR);
+        Registry.register(Registry.STRUCTURE_PROCESSOR, new Identifier(MODID, "candle_processor"), CANDLE_PROCESSOR);
 
         ServerLifecycleEvents.SERVER_STARTING.register((MinecraftServer server) -> handleModSupport(server.getRegistryManager()));
     }

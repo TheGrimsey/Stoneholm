@@ -1,0 +1,87 @@
+{
+    "name": "stoneholm:main",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 10,
+        "element": {
+          "location": "stoneholm:connectors/corridor",
+          "processors": "stoneholm:test",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "location": "stoneholm:connectors/x_corridor",
+          "processors": "stoneholm:test",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "location": "stoneholm:connectors/t_corridor",
+          "processors": "stoneholm:test",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "location": "stoneholm:connectors/l_corridor",
+          "processors": "stoneholm:test",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "location": "stoneholm:connectors/corner_stair",
+          "processors": "stoneholm:test",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 2,
+        "element": {
+          "location": "stoneholm:bedrooms/2_bed_large_nice",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 2,
+        "element": {
+          "location": "stoneholm:bedrooms/6_bed",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 2,
+        "element": {
+          "location": "stoneholm:bedrooms/half_two_floors",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 3,
+        "element": {
+          "location": "stoneholm:room/half_and_half",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      }
+    ]
+  }

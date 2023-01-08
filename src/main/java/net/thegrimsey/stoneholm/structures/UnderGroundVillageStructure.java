@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class UnderGroundVillageStructure extends Structure {
     public static final Codec<Structure> CODEC = createCodec(UnderGroundVillageStructure::new);
-    public static final Identifier START_POOL = new Identifier(Stoneholm.MODID, "start_pool");
+    public static final Identifier START_POOL = new Identifier(Stoneholm.MODID, "main");
 
     public UnderGroundVillageStructure(Config config) {
         super(config);

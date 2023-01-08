@@ -1,0 +1,24 @@
+{
+    "name": "stoneholm:half_room",
+    "fallback": "stoneholm:half_room",
+    "elements": [
+      {
+        "weight": 2,
+        "element": {
+          "location": "stoneholm:half_room/hay_candle",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      },
+      {
+        "weight": 2,
+        "element": {
+          "location": "stoneholm:half_room/books_and_lectern",
+          "processors": "minecraft:empty",
+          "projection": "rigid",
+          "element_type": "minecraft:single_pool_element"
+        }
+      }
+    ]
+  }
