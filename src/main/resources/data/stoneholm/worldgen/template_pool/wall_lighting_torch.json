@@ -1,0 +1,16 @@
+{
+  "name": "stoneholm:villagers",
+  "fallback": "stoneholm:wall_lighting_torch",
+
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:wall_lighting/torch",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

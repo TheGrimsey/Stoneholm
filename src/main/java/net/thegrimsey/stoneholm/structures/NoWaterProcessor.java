@@ -18,13 +18,13 @@ public class NoWaterProcessor extends StructureProcessor {
     @Nullable
     @Override
     public StructureTemplate.StructureBlockInfo process(WorldView world, BlockPos pos, BlockPos pivot, StructureTemplate.StructureBlockInfo structureBlockInfoLocal, StructureTemplate.StructureBlockInfo structureBlockInfoWorld, StructurePlacementData data) {
-        Chunk chunk = world.getChunk(structureBlockInfoWorld.pos);
+        Chunk chunk = world.getChunk(structureBlockInfoWorld.pos());
 
-        if(structureBlockInfoWorld.state.contains(Properties.WATERLOGGED) && !chunk.getFluidState(structureBlockInfoWorld.pos).isEmpty())
+        if(structureBlockInfoWorld.state().contains(Properties.WATERLOGGED) && !chunk.getFluidState(structureBlockInfoWorld.pos()).isEmpty())
         {
-            boolean waterlog = (structureBlockInfoLocal.state.contains(Properties.WATERLOGGED) && structureBlockInfoLocal.state.get(Properties.WATERLOGGED));
+            boolean waterlog = (structureBlockInfoLocal.state().contains(Properties.WATERLOGGED) && structureBlockInfoLocal.state().get(Properties.WATERLOGGED));
 
-            chunk.setBlockState(structureBlockInfoWorld.pos, structureBlockInfoWorld.state.rotate(data.getRotation()).with(Properties.WATERLOGGED, waterlog), false);
+            chunk.setBlockState(structureBlockInfoWorld.pos(), structureBlockInfoWorld.state().rotate(data.getRotation()).with(Properties.WATERLOGGED, waterlog), false);
         }
 
         return structureBlockInfoWorld;
