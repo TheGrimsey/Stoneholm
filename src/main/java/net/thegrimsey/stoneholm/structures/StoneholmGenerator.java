@@ -10,8 +10,14 @@ import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.structure.*;
-import net.minecraft.structure.pool.*;
+import net.minecraft.structure.JigsawJunction;
+import net.minecraft.structure.PoolStructurePiece;
+import net.minecraft.structure.StructureTemplate;
+import net.minecraft.structure.StructureTemplateManager;
+import net.minecraft.structure.pool.EmptyPoolElement;
+import net.minecraft.structure.pool.StructurePool;
+import net.minecraft.structure.pool.StructurePoolElement;
+import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -24,8 +30,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeCoords;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.noise.NoiseConfig;
 import net.minecraft.world.gen.structure.Structure;
@@ -35,7 +39,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class StoneholmGenerator {
     static final Logger LOGGER = LogManager.getLogger();
@@ -45,16 +48,7 @@ public class StoneholmGenerator {
             new Identifier(Stoneholm.MODID, "wall_lighting_torch"),
     };
 
-    enum BlockSet {
-        STONE_BRICKS(0);
-
-        final int id;
-
-        BlockSet(int id) {
-            this.id = id;
-        }
-    }
-
+    // Indexed by blockset
     static final Identifier[] CORRIDORS = {
             new Identifier(Stoneholm.MODID, "stone_bricks/corridors")
     };
@@ -78,7 +72,6 @@ public class StoneholmGenerator {
         ChunkGenerator chunkGenerator = inContext.chunkGenerator();
         StructureTemplateManager structureManager = inContext.structureTemplateManager();
         HeightLimitView heightLimitView = inContext.world();
-        Predicate<RegistryEntry<Biome>> biomePredicate = inContext.biomePredicate();
 
         BlockRotation blockRotation = BlockRotation.random(chunkRandom);
         PoolStructurePiece poolStructurePiece = new PoolStructurePiece(structureManager, startingElement, pos, startingElement.getGroundLevelDelta(), blockRotation, startingElement.getBoundingBox(structureManager, pos, blockRotation));
@@ -88,17 +81,19 @@ public class StoneholmGenerator {
         int centerZ = (pieceBoundingBox.getMaxZ() + pieceBoundingBox.getMinZ()) / 2;
         int y = pos.getY() + chunkGenerator.getHeightOnGround(centerX, centerZ, Heightmap.Type.WORLD_SURFACE_WG, heightLimitView, inContext.noiseConfig());
 
-        if (!biomePredicate.test(chunkGenerator.getBiomeSource().getBiome(BiomeCoords.fromBlock(centerX), BiomeCoords.fromBlock(y), BiomeCoords.fromBlock(centerZ), inContext.noiseConfig().getMultiNoiseSampler())))
-            return Optional.empty();
-
         int yOffset = pieceBoundingBox.getMinY() + poolStructurePiece.getGroundLevelDelta();
         poolStructurePiece.translate(0, y - yOffset, 0);
+
+        final double extents = 64.0;
+
+        Box maxExtents = new Box((double) centerX - extents, inContext.world().getBottomY(), (double) centerZ - extents,
+                (double) centerX + extents, inContext.world().getTopY(), (double) centerZ + extents);
 
         return Optional.of(new Structure.StructurePosition(new BlockPos(centerX, y, centerZ), (collector) -> {
             ArrayList<PoolStructurePiece> list = Lists.newArrayList(poolStructurePiece);
 
             Box box = new Box(centerX - 80, y - 80, centerZ - 80, centerX + 80 + 1, y + 80 + 1, centerZ + 80 + 1);
-            StoneholmStructurePoolGenerator structurePoolGenerator = new StoneholmStructurePoolGenerator(registry, size, chunkGenerator, structureManager, list, chunkRandom, BlockSet.STONE_BRICKS);
+            StoneholmStructurePoolGenerator structurePoolGenerator = new StoneholmStructurePoolGenerator(registry, size, chunkGenerator, structureManager, list, chunkRandom, BlockSet.STONE_BRICKS, maxExtents);
             structurePoolGenerator.structurePieces.addLast(new StoneholmShapedPoolStructurePiece(poolStructurePiece, new MutableObject<>(VoxelShapes.combineAndSimplify(VoxelShapes.cuboid(box), VoxelShapes.cuboid(Box.from(pieceBoundingBox)), BooleanBiFunction.ONLY_FIRST)), 0, null));
 
             // Go through all structure pieces in the project.
@@ -127,6 +122,8 @@ public class StoneholmGenerator {
         final StructurePool wall_lighting;
         final StructurePool corridors;
 
+        final Box maxExtents;
+
         // Terrible hack. Ignore these pools when doing terrainchecks.
         static final HashSet<Identifier> terrainCheckIgnoredPools = new HashSet<>(Arrays.asList(
                 new Identifier(Stoneholm.MODID, "bee"),
@@ -139,13 +136,15 @@ public class StoneholmGenerator {
                 new Identifier(Stoneholm.MODID, "corridors")
         ));
 
-        StoneholmStructurePoolGenerator(Registry<StructurePool> registry, int maxSize, ChunkGenerator chunkGenerator, StructureTemplateManager structureManager, List<? super PoolStructurePiece> children, ChunkRandom random, BlockSet blockSet) {
+        StoneholmStructurePoolGenerator(Registry<StructurePool> registry, int maxSize, ChunkGenerator chunkGenerator, StructureTemplateManager structureManager, List<? super PoolStructurePiece> children, ChunkRandom random, BlockSet blockSet, Box maxExtents) {
             this.registry = registry;
             this.maxSize = maxSize;
             this.chunkGenerator = chunkGenerator;
             this.structureManager = structureManager;
             this.children = children;
             this.random = random;
+
+            this.maxExtents = maxExtents;
 
             wall_lighting = registry.get(WALL_LIGHTING_POOLS[random.nextInt(WALL_LIGHTING_POOLS.length)]);
             corridors = registry.get(CORRIDORS[blockSet.id]);
@@ -260,9 +259,15 @@ public class StoneholmGenerator {
                     int adjustedMinY = boundsMinY + o;
                     int pieceYOffset = adjustedMinY - iteratedStructureBoundingBox.getMinY();
                     BlockBox offsetBoundingBox = iteratedStructureBoundingBox.offset(0, pieceYOffset, 0);
+                    VoxelShape offsetVoxelShape = VoxelShapes.cuboid(Box.from(offsetBoundingBox).contract(0.25));
 
                     // If bounding boxes overlap at all; skip.
-                    if (VoxelShapes.matchesAnywhere(structureShape.getValue(), VoxelShapes.cuboid(Box.from(offsetBoundingBox).contract(0.25)), BooleanBiFunction.ONLY_SECOND))
+                    if (VoxelShapes.matchesAnywhere(structureShape.getValue(), offsetVoxelShape, BooleanBiFunction.ONLY_SECOND))
+                        continue;
+
+                    Box box = offsetVoxelShape.getBoundingBox();
+                    boolean entirelyContained = box.minX >= this.maxExtents.minX && box.maxX <= this.maxExtents.maxX && box.minZ >= this.maxExtents.minZ && box.maxZ <= this.maxExtents.maxZ;
+                    if (!entirelyContained)
                         continue;
 
                     // STONEHOLM CUSTOM: Skip if top of bounding box is above terrain. This is extremely hacky. Like, genuinely this is terrible.

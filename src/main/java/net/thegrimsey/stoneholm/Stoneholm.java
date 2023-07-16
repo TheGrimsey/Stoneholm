@@ -14,6 +14,7 @@ import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
 import net.thegrimsey.stoneholm.structures.NoWaterProcessor;
+import net.thegrimsey.stoneholm.structures.WindowProcessor;
 import net.thegrimsey.stoneholm.util.StructurePoolUtils;
 
 public class Stoneholm implements ModInitializer {
@@ -21,6 +22,7 @@ public class Stoneholm implements ModInitializer {
     public static final Identifier UNDERGROUNDVILLAGE_IDENTIFIER = new Identifier(Stoneholm.MODID, "underground_village");
     public static SHConfig CONFIG;
     public static final StructureProcessorType<NoWaterProcessor> NOWATER_PROCESSOR = () -> NoWaterProcessor.CODEC;
+    public static final StructureProcessorType<WindowProcessor> WINDOW_PROCESSOR = () -> WindowProcessor.CODEC;
 
     // Suppress deprecation warnings from Fabric's Biome API.
     @Override
@@ -33,6 +35,7 @@ public class Stoneholm implements ModInitializer {
         // Register structures & configured structures.
         SHStructures.registerStructureFeatures();
         Registry.register(Registries.STRUCTURE_PROCESSOR, new Identifier(MODID, "nowater_processor"), NOWATER_PROCESSOR);
+        Registry.register(Registries.STRUCTURE_PROCESSOR, new Identifier(MODID, "window_processor"), WINDOW_PROCESSOR);
 
         ServerLifecycleEvents.SERVER_STARTING.register((MinecraftServer server) -> handleModSupport(server.getRegistryManager()));
     }
