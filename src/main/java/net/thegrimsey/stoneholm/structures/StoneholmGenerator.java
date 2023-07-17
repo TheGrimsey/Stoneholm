@@ -52,6 +52,10 @@ public class StoneholmGenerator {
     static final Identifier[] CORRIDORS = {
             new Identifier(Stoneholm.MODID, "stone_bricks/corridors")
     };
+    static final Identifier[] FUSILAGE = {
+            new Identifier(Stoneholm.MODID, "stone_bricks/fusilage")
+    };
+
 
     public static Optional<Structure.StructurePosition> generate(Structure.Context inContext, BlockPos pos) {
         int size = Stoneholm.CONFIG.VILLAGE_SIZE;
@@ -122,6 +126,8 @@ public class StoneholmGenerator {
         final StructurePool wall_lighting;
         final StructurePool corridors;
 
+        final StructurePoolElement fusilage;
+
         final Box maxExtents;
 
         // Terrible hack. Ignore these pools when doing terrainchecks.
@@ -148,6 +154,7 @@ public class StoneholmGenerator {
 
             wall_lighting = registry.get(WALL_LIGHTING_POOLS[random.nextInt(WALL_LIGHTING_POOLS.length)]);
             corridors = registry.get(CORRIDORS[blockSet.id]);
+            fusilage = registry.get(FUSILAGE[blockSet.id]).getRandomElement(random);
 
             // TODO: Eventually move fallback pools somewhere else.
             fallback_down = registry.get(new Identifier(Stoneholm.MODID, "fallback_down_pool"));
@@ -185,7 +192,7 @@ public class StoneholmGenerator {
                 MutableObject<VoxelShape> structureShape;
                 Direction structureBlockFaceDirection = JigsawBlock.getFacing(structureBlock.state());
                 BlockPos structureBlockPosition = structureBlock.pos();
-                BlockPos structureBlockAimPosition = structureBlockPosition.offset(structureBlockFaceDirection);
+                BlockPos structureBlockAimPosition = structureBlockPosition.offset(structureBlockFaceDirection, 2);
 
                 // Get pool that structure block is targeting.
                 Identifier structureBlockTargetPoolId = new Identifier(structureBlock.nbt().getString("pool"));
@@ -195,7 +202,7 @@ public class StoneholmGenerator {
                     continue;
                 }
 
-                boolean ignoredPool = terrainCheckIgnoredPools.contains(structureBlockTargetPoolId);
+                boolean ignoredPool = true;// && terrainCheckIgnoredPools.contains(structureBlockTargetPoolId);
 
                 // Get end cap pool for target pool.
                 RegistryEntry<StructurePool> entry = targetPool.get().getFallback();
@@ -227,9 +234,11 @@ public class StoneholmGenerator {
                     if (iteratedStructureElement == EmptyPoolElement.INSTANCE)
                         break;
 
-                    boolean placed = tryPlacePiece(piece, currentSize, world, noiseConfig, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, iteratedStructureElement, false && currentSize >= 2 && !ignoredPool);
-                    if(placed)
+                    boolean placed = tryPlacePiece(piece, currentSize, world, noiseConfig, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, iteratedStructureElement, currentSize >= 2 && !ignoredPool);
+                    if(placed) {
+                        tryPlacePiece(piece, this.maxSize, world, noiseConfig, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockPosition.offset(structureBlockFaceDirection), this.fusilage, false);
                         break;
+                    }
                 }
             }
         }
