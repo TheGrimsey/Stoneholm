@@ -4,7 +4,7 @@
     {
       "rolls": {
         "min": 1.0,
-        "max": 3.0,
+        "max": 5.0,
         "type": "minecraft:uniform"
       },
       "entries": [
@@ -44,36 +44,6 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:water_bucket"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:wheat_seeds"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 2,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:coal"
         }
       ]
     }

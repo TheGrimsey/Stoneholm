@@ -6,16 +6,7 @@
     {
       "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/l",
-        "processors": "stoneholm:stone_bricks/decayer",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 4,
-      "element": {
-        "location": "stoneholm:corridor/t",
+        "location": "stoneholm:courtyard/two_room_bell",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -24,31 +15,28 @@
     {
       "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/straight",
+        "location": "stoneholm:courtyard/ale",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
-      "weight": 2,
+      "weight": 3,
       "element": {
-        "location": "stoneholm:corridor/x",
+        "location": "stoneholm:courtyard/double_floor",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
-      "weight": 1,
+      "weight": 3,
       "element": {
-        "location": "stoneholm:corridor/stairs_1x2x1",
+        "location": "stoneholm:courtyard/anvil",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     }
   ]

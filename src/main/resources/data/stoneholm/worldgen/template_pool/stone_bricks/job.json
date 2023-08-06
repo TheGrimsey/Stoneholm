@@ -1,0 +1,88 @@
+{
+  "name": "stoneholm:corridors",
+  "fallback": "stoneholm:stone_bricks/end_cap",
+
+  "elements": [
+    {
+      "weight": 6,
+      "element": {
+        "location": "stoneholm:job/library",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 6,
+      "element": {
+        "location": "stoneholm:job/cleric",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:job/farming_court",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "stoneholm:job/armorer",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "stoneholm:job/armorer_deep",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 6,
+      "element": {
+        "location": "stoneholm:job/butcher",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 6,
+      "element": {
+        "location": "stoneholm:job/cartographer",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 6,
+      "element": {
+        "location": "stoneholm:job/fisher",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 6,
+      "element": {
+        "location": "stoneholm:job/stonemason",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

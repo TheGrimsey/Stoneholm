@@ -10,74 +10,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:cobblestone"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:granite"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:andesite"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:diorite"
-        },
-
-        {
-          "type": "minecraft:item",
           "weight": 8,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
-                "max": 12.0,
+                "max": 16.0,
                 "type": "minecraft:uniform"
               }
             }
@@ -108,7 +47,7 @@
               "function": "minecraft:set_damage",
               "damage": {
                 "min": 0.4,
-                "max": 1,
+                "max": 0.7,
                 "type": "minecraft:uniform"
               }
             }
@@ -122,12 +61,12 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
-                "max": 3.0,
+                "max": 5.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
-          "name": "minecraft:iron_ore"
+          "name": "minecraft:raw_iron"
         },
         {
           "type": "minecraft:item",
@@ -149,8 +88,36 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0.0,
-                "max": 1.0,
+                "min": 1.0,
+                "max": 8.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:raw_gold"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3.0,
+                "max": 10.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:redstone"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 2.0,
                 "type": "minecraft:uniform"
               }
             }

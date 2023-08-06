@@ -6,16 +6,7 @@
     {
       "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/l",
-        "processors": "stoneholm:stone_bricks/decayer",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 4,
-      "element": {
-        "location": "stoneholm:corridor/t",
+        "location": "stoneholm:misc_room/toolsmith",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -24,31 +15,46 @@
     {
       "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/straight",
+        "location": "stoneholm:misc_room/weaponsmith",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
-      }
-    },
-    {
-      "weight": 2,
-      "element": {
-        "location": "stoneholm:corridor/x",
-        "processors": "stoneholm:stone_bricks/decayer",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
       "weight": 1,
       "element": {
-        "location": "stoneholm:corridor/stairs_1x2x1",
+        "location": "stoneholm:misc_room/bedroom",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:misc_room/cartographer",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:misc_room/library",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "stoneholm:misc_room/fletcher",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
       }
     }
   ]

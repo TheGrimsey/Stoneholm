@@ -6,16 +6,7 @@
     {
       "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/l",
-        "processors": "stoneholm:stone_bricks/decayer",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 4,
-      "element": {
-        "location": "stoneholm:corridor/t",
+        "location": "stoneholm:bedroom/square",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -24,31 +15,37 @@
     {
       "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/straight",
+        "location": "stoneholm:bedroom/tiny",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
       "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/x",
+        "location": "stoneholm:bedroom/long_hall",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
-      "weight": 1,
+      "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/stairs_1x2x1",
+        "location": "stoneholm:bedroom/double_corridor",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:bedroom/triple_corridor",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
       }
     }
   ]
