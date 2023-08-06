@@ -165,7 +165,8 @@ public class StoneholmGenerator {
 
         static final HashSet<Identifier> NO_FUSILAGE = new HashSet<>(Arrays.asList(
                 WALL_LIGHTING,
-                new Identifier(Stoneholm.MODID, "misc_room")
+                new Identifier(Stoneholm.MODID, "misc_room"),
+                new Identifier(Stoneholm.MODID, "villager")
         ));
 
         StoneholmStructurePoolGenerator(Registry<StructurePool> registry, int maxSize, ChunkGenerator chunkGenerator, StructureTemplateManager structureManager, List<? super PoolStructurePiece> children, ChunkRandom random, BlockSet blockSet, Box maxExtents) {
@@ -241,7 +242,8 @@ public class StoneholmGenerator {
                     continue;
                 Identifier structureBlockTargetPoolId = new Identifier(structureBlock.nbt().getString("pool"));
                 int offset = 2;
-                if (NO_FUSILAGE.contains(structureBlockTargetPoolId)) {
+                boolean noFusilage = NO_FUSILAGE.contains(structureBlockTargetPoolId);
+                if (noFusilage) {
                     offset = 1;
                 }
 
@@ -285,14 +287,17 @@ public class StoneholmGenerator {
                 }
                 possibleElementsToSpawn.addAll(fallbackPool.getElementIndicesInRandomOrder(this.random)); // Add in terminator elements.
 
+                if(!noFusilage) {
+                    // Place fusilage.
+                    tryPlacePiece(piece, this.maxSize, world, noiseConfig, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockPosition.offset(structureBlockFaceDirection), this.fusilage, false);
+                }
+
                 for (StructurePoolElement iteratedStructureElement : possibleElementsToSpawn) {
                     if (iteratedStructureElement == EmptyPoolElement.INSTANCE)
                         break;
 
                     boolean placed = tryPlacePiece(piece, currentSize, world, noiseConfig, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockAimPosition, iteratedStructureElement, currentSize >= 2 && !ignoredPool);
                     if(placed) {
-                        // Place fusilage.
-                        tryPlacePiece(piece, this.maxSize, world, noiseConfig, boundsMinY, structureBlock, structureShape, structureBlockFaceDirection, structureBlockPosition, structureBlockPosition.offset(structureBlockFaceDirection), this.fusilage, false);
                         break;
                     }
                 }

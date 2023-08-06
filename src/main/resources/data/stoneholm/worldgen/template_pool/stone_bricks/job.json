@@ -83,6 +83,15 @@
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
+    },
+    {
+      "weight": 6,
+      "element": {
+        "location": "stoneholm:job/leatherworker",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
     }
   ]
 }
