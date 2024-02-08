@@ -64,6 +64,18 @@ public class StoneholmGenerator {
     static final Identifier[] JOB = {
             new Identifier(Stoneholm.MODID, "stone_bricks/job")
     };
+    static final Identifier[] EASTER_EGGS = {
+            new Identifier(Stoneholm.MODID, "stone_bricks/easter_eggs")
+    };
+    static final Identifier[] STAIRS = {
+            new Identifier(Stoneholm.MODID, "stone_bricks/stairs")
+    };
+    static final Identifier[] STAIRS_START = {
+            new Identifier(Stoneholm.MODID, "stone_bricks/stairs_start")
+    };
+    static final Identifier[] STAIRS_END = {
+            new Identifier(Stoneholm.MODID, "stone_bricks/stairs_end")
+    };
 
     static final double EXTENTS = 64.0;
 
@@ -137,6 +149,11 @@ public class StoneholmGenerator {
         final StructurePool courtyard;
 
         final StructurePool job;
+        final StructurePool easter_eggs;
+        final StructurePool stairs;
+        final StructurePool stairs_end;
+        final StructurePool stairs_start;
+
 
         final StructurePoolElement fusilage;
 
@@ -162,6 +179,8 @@ public class StoneholmGenerator {
 
         static final Identifier WALL_LIGHTING = new Identifier(Stoneholm.MODID, "wall_lighting");
         static final Identifier CONNECTORS = new Identifier(Stoneholm.MODID, "connectors");
+        static final Identifier STAIRS_ID = new Identifier(Stoneholm.MODID, "stairs");
+        static final Identifier STAIRS_START_ID = new Identifier(Stoneholm.MODID, "stairs_start");
 
         static final HashSet<Identifier> NO_FUSILAGE = new HashSet<>(Arrays.asList(
                 WALL_LIGHTING,
@@ -185,6 +204,11 @@ public class StoneholmGenerator {
             bedroom = registry.get(BEDROOM[blockSet.id]);
             courtyard = registry.get(COURTYARD[blockSet.id]);
             job = registry.get(JOB[blockSet.id]);
+            easter_eggs = registry.get(EASTER_EGGS[blockSet.id]);
+
+            stairs = registry.get(STAIRS[blockSet.id]);
+            stairs_start = registry.get(STAIRS_START[blockSet.id]);
+            stairs_end = registry.get(STAIRS_END[blockSet.id]);
 
             // TODO: Eventually move fallback pools somewhere else.
             fallback_down = registry.get(new Identifier(Stoneholm.MODID, "fallback_down_pool"));
@@ -192,7 +216,7 @@ public class StoneholmGenerator {
             end_cap = registry.get(new Identifier(Stoneholm.MODID, "end"));
         }
 
-        Optional<StructurePool> getPool(Identifier id) {
+        Optional<StructurePool> getPool(Identifier id, ChunkGenerator chunkGenerator, HeightLimitView world, NoiseConfig noiseConfig, BlockPos sourceConnector) {
             if(id.equals(WALL_LIGHTING)) {
                 return Optional.of(wall_lighting);
             } else if(id.equals(CONNECTORS)) {
@@ -219,9 +243,21 @@ public class StoneholmGenerator {
                     return Optional.of(courtyard);
                 }
 
+                if(this.random.nextDouble() < 0.03 && yieldedRooms >= 8) {
+                    return Optional.of(easter_eggs);
+                }
+
                 yieldedCorridors++;
                 return Optional.of(corridors);
-            } else {
+            } else if (id.equals(STAIRS_ID)) {
+                if(sourceConnector.getY() < chunkGenerator.getHeightOnGround(sourceConnector.getX(), sourceConnector.getZ(), Heightmap.Type.WORLD_SURFACE_WG, world, noiseConfig) - 21 && this.random.nextDouble() < 0.9) {
+                    return Optional.of(stairs_end);
+                } else {
+                    return Optional.of(stairs);
+                }
+            } else if (id.equals(STAIRS_START_ID)) {
+                return Optional.of(stairs_start);
+            }else {
                 return this.registry.getOrEmpty(id);
             }
         }
@@ -253,7 +289,7 @@ public class StoneholmGenerator {
                 BlockPos structureBlockAimPosition = structureBlockPosition.offset(structureBlockFaceDirection, offset);
 
                 // Get pool that structure block is targeting.
-                Optional<StructurePool> targetPool = this.getPool(structureBlockTargetPoolId);
+                Optional<StructurePool> targetPool = this.getPool(structureBlockTargetPoolId, chunkGenerator, world, noiseConfig, structureBlock.pos());
                 if (targetPool.isEmpty() || targetPool.get().getElementCount() == 0 && !Objects.equals(structureBlockTargetPoolId, StructurePools.EMPTY.getValue())) {
                     LOGGER.warn("Empty or non-existent pool: {}", structureBlockTargetPoolId);
                     continue;

@@ -1,0 +1,34 @@
+{
+  "name": "stoneholm:corridors",
+  "fallback": "stoneholm:stone_bricks/end_cap",
+
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/stairs/end",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/stairs/end_two",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/stairs/end_big",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

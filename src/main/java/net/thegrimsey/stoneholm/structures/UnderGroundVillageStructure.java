@@ -52,9 +52,30 @@ public class UnderGroundVillageStructure extends Structure {
         return StoneholmGenerator.generate(context, blockPos);
     }
 
+    final static Block[] BARS = {
+            Blocks.IRON_BARS,
+            Blocks.GLASS_PANE,
+            Blocks.WHITE_STAINED_GLASS_PANE,
+            Blocks.ORANGE_STAINED_GLASS_PANE,
+            Blocks.MAGENTA_STAINED_GLASS_PANE,
+            Blocks.LIGHT_BLUE_STAINED_GLASS_PANE,
+            Blocks.YELLOW_STAINED_GLASS_PANE,
+            Blocks.LIME_STAINED_GLASS_PANE,
+            Blocks.PINK_STAINED_GLASS_PANE,
+            Blocks.GRAY_STAINED_GLASS_PANE,
+            Blocks.LIGHT_GRAY_STAINED_GLASS_PANE,
+            Blocks.CYAN_STAINED_GLASS_PANE,
+            Blocks.PURPLE_STAINED_GLASS_PANE,
+            Blocks.BLUE_STAINED_GLASS_PANE,
+            Blocks.BROWN_STAINED_GLASS_PANE,
+            Blocks.GREEN_STAINED_GLASS_PANE,
+            Blocks.RED_STAINED_GLASS_PANE,
+            Blocks.BLACK_STAINED_GLASS_PANE,
+    };
+
     @Override
     public void postPlace(StructureWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockBox box, ChunkPos chunkPos, StructurePiecesList pieces) {
-
+        Block newBlock = BARS[random.nextInt(BARS.length)];
 
         pieces.pieces().forEach(structurePiece -> {
             BlockBox bounding_box = structurePiece.getBoundingBox();
@@ -70,7 +91,7 @@ public class UnderGroundVillageStructure extends Structure {
                                 world.getBlockState(blockPos.offset(Direction.NORTH)).isAir() && world.getBlockState(blockPos.offset(Direction.SOUTH)).isAir()
                                     || world.getBlockState(blockPos.offset(Direction.EAST)).isAir() && world.getBlockState(blockPos.offset(Direction.WEST)).isAir()
                             ) {
-                                BlockState newState = Blocks.IRON_BARS.getDefaultState();
+                                BlockState newState = newBlock.getDefaultState();
 
                                 for(int i = 0; i < directions.length; i++) {
                                     Direction direction = directions[i];

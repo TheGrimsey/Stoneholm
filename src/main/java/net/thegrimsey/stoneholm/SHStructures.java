@@ -16,8 +16,6 @@ public class SHStructures {
     }
 
     private static <S extends Structure> StructureType register(String id, Codec<Structure> codec) {
-        return Registry.register(Registries.STRUCTURE_TYPE, id, () -> {
-            return codec;
-        });
+        return Registry.register(Registries.STRUCTURE_TYPE, id, () -> codec);
     }
 }

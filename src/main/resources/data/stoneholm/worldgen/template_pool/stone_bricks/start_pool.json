@@ -6,7 +6,16 @@
     {
       "weight": 1,
       "element": {
-        "location": "stoneholm:corridor/l",
+        "location": "stoneholm:entrace/tip/simple",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/tip/moon_gate",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -15,20 +24,46 @@
     {
       "weight": 1,
       "element": {
-        "location": "stoneholm:corridor/t",
+        "location": "stoneholm:entrace/tip/moon_gate_tower",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
     },
     {
-      "weight": 1,
+      "weight": 2,
       "element": {
-        "location": "stoneholm:corridor/straight",
+        "location": "stoneholm:entrace/tip/castle",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/tip/blocked",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/tip/hut",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/tip/garden",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
       }
     }
   ]

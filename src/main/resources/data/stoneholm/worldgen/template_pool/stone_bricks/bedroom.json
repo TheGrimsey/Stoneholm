@@ -51,7 +51,7 @@
     {
       "weight": 2,
       "element": {
-        "location": "stoneholm:bedroom/tall_bedroom",
+        "location": "stoneholm:bedroom/double_rooms",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

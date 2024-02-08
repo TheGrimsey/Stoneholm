@@ -1,0 +1,16 @@
+{
+  "name": "stoneholm:corridors",
+  "fallback": "stoneholm:stone_bricks/end_cap",
+
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/stairs/mid",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
