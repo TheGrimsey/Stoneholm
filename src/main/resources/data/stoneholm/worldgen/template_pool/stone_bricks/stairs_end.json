@@ -29,6 +29,15 @@
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/stairs/end_big_tall",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
     }
   ]
 }

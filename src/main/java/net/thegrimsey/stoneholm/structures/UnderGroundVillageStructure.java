@@ -47,7 +47,7 @@ public class UnderGroundVillageStructure extends Structure {
         int z = context.chunkPos().z << 4;
 
         // Position, set Y to 1 to offset height up.
-        BlockPos blockPos = new BlockPos(x, 1, z);
+        BlockPos blockPos = new BlockPos(x, 0, z);
 
         return StoneholmGenerator.generate(context, blockPos);
     }
