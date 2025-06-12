@@ -51,7 +51,7 @@
               }
             }
           ],
-          "name": "minecraft:gold_sword"
+          "name": "minecraft:golden_sword"
         },
         {
           "type": "minecraft:item",
@@ -158,7 +158,7 @@
         {
           "type": "minecraft:item",
           "weight": 5,
-          "name": "minecraft:golden_apple"
+          "name": "minecraft:§en_apple"
         },
         {
           "type": "minecraft:item",
