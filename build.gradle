@@ -75,18 +75,26 @@ if (mc_version != "1.20.1") {
     }
 
     processResources.dependsOn generateSingularPaths
+    tasks.matching { it.name == 'sourcesJar' }.configureEach { dependsOn generateSingularPaths }
 }
 
 sourceSets.main.resources.srcDir generatedPoolsDir
 processResources.dependsOn generateThemePools
+tasks.matching { it.name == 'sourcesJar' }.configureEach { dependsOn generateThemePools }
 
 processResources {
+    def cloth_major = (project.cloth_config_version =~ /^(\d+)/)[0][1]
+
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "java_version", project.java_version
+    inputs.property "cloth_config_major", cloth_major
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
-               "minecraft_version": project.minecraft_version
+               "minecraft_version": project.minecraft_version,
+               "java_version": project.java_version,
+               "cloth_config_major": cloth_major
     }
 }
 
