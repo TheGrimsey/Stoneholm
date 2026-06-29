@@ -2,11 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 1.0,
-        "max": 3.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" },
       "entries": [
         {
           "type": "minecraft:item",
@@ -14,11 +10,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:bone"
@@ -29,11 +21,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:bone_meal"
@@ -44,11 +32,7 @@
           "functions": [
             {
               "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.1,
-                "max": 1,
-                "type": "minecraft:uniform"
-              }
+              "damage": { "min": 0.1, "max": 1.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:golden_sword"
@@ -59,11 +43,7 @@
           "functions": [
             {
               "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.2,
-                "max": 0.9,
-                "type": "minecraft:uniform"
-              }
+              "damage": { "min": 0.2, "max": 0.9, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:iron_axe"
@@ -74,11 +54,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 12.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 12.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:arrow"
@@ -89,11 +65,7 @@
           "functions": [
             {
               "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.0,
-                "max": 0.5,
-                "type": "minecraft:uniform"
-              }
+              "damage": { "min": 0.0, "max": 0.5, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:bow"
@@ -104,35 +76,22 @@
           "functions": [
             {
               "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.0,
-                "max": 0.7,
-                "type": "minecraft:uniform"
-              }
+              "damage": { "min": 0.0, "max": 0.7, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:shield"
         }
       ]
     },
-
     {
-      "rolls": {
-        "min": 0.0,
-        "max": 1.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": { "min": 0.0, "max": 1.0, "type": "minecraft:uniform" },
       "entries": [
         {
           "type": "minecraft:item",
           "functions": [
             {
               "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.8,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
+              "damage": { "min": 0.8, "max": 1.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:diamond_sword"
@@ -142,11 +101,7 @@
           "functions": [
             {
               "function": "minecraft:set_damage",
-              "damage": {
-                "min": 0.8,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
+              "damage": { "min": 0.8, "max": 1.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:diamond_axe"
@@ -158,7 +113,7 @@
         {
           "type": "minecraft:item",
           "weight": 5,
-          "name": "minecraft:§en_apple"
+          "name": "minecraft:golden_apple"
         },
         {
           "type": "minecraft:item",
@@ -186,14 +141,21 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:diamond"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 2.0, "max": 6.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:lapis_lazuli"
         },
         {
           "type": "minecraft:item",
@@ -201,11 +163,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:redstone"
@@ -216,16 +174,11 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:emerald"
         }
-
       ]
     }
   ]

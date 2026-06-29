@@ -1,5 +1,5 @@
 {
-  "name": "stoneholm:corridors",
+  "name": "stoneholm:stone_bricks/corridors",
   "fallback": "stoneholm:stone_bricks/end_cap",
 
   "elements": [
@@ -28,7 +28,6 @@
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
@@ -38,7 +37,6 @@
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
@@ -48,7 +46,6 @@
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
@@ -58,7 +55,6 @@
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
@@ -68,7 +64,6 @@
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
@@ -78,7 +73,6 @@
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
       }
     },
     {
@@ -88,7 +82,24 @@
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
-
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "stoneholm:corridor/x_double",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "stoneholm:cistern/dock",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
       }
     }
   ]

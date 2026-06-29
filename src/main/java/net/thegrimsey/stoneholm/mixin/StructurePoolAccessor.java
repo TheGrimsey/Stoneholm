@@ -12,13 +12,14 @@ import java.util.List;
 
 @Mixin(StructurePool.class)
 public interface StructurePoolAccessor {
+    //? if <1.21.4 {
     @Accessor("elementCounts")
     @Mutable
     void setElementCounts(List<Pair<StructurePoolElement, Integer>> elementCounts);
 
-
     @Accessor("elementCounts")
     List<Pair<StructurePoolElement, Integer>> getElementCounts();
+    //?}
 
     @Accessor("elements")
     @Mutable

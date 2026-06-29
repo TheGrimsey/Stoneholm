@@ -2,11 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 2.0,
-        "max": 5.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": { "min": 2.0, "max": 5.0, "type": "minecraft:uniform" },
       "entries": [
         {
           "type": "minecraft:item",
@@ -14,11 +10,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 6.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 6.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:paper"
@@ -29,11 +21,19 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:book"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 15,
+              "treasure": true
             }
           ],
           "name": "minecraft:book"
@@ -44,12 +44,24 @@
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
-              "levels": 15,
+              "levels": 30,
               "treasure": true
             }
           ],
           "name": "minecraft:book"
-        }
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:experience_bottle"
+        },
+        { "type": "minecraft:item", "weight": 1, "name": "minecraft:name_tag" }
       ]
     }
   ]

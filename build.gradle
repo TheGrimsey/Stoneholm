@@ -1,69 +1,117 @@
 plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
-	id 'maven-publish'
+    id 'fabric-loom' version '1.17.12'
+    id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+def mc_version = stonecutter.current.version
+def java_version = project.java_version as int
 
-archivesBaseName = project.archives_base_name
-version = project.mod_version
+version = "${project.mod_version}+${mc_version}"
 group = project.maven_group
+base.archivesName = project.archives_base_name
 
 repositories {
-	// Cloth Config
     maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com/"}
+    maven { url "https://maven.terraformersmc.com/" }
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	// Cloth Config
     modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 }
 
-processResources {
-	inputs.property "version", project.version
+// Add theme names here to generate a full pool directory from stone_bricks/.
+// Each theme needs processor_list/<theme>/decayer.json and super_decayer.json,
+// plus a BlockSet entry and pool ID arrays in StoneholmGenerator.java.
+def poolThemes = [
+    'deepslate',
+    // 'nether',
+]
 
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
+def stoneBricksPoolDir = rootProject.file('src/main/resources/data/stoneholm/worldgen/template_pool/stone_bricks')
+def generatedPoolsDir = layout.buildDirectory.dir('generated/resources').get().asFile
+
+tasks.register('generateThemePools') {
+    inputs.dir stoneBricksPoolDir
+    inputs.property 'themes', poolThemes
+    outputs.dir new File(generatedPoolsDir, 'data/stoneholm/worldgen/template_pool')
+
+    doLast {
+        poolThemes.each { theme ->
+            def outDir = new File(generatedPoolsDir, "data/stoneholm/worldgen/template_pool/${theme}")
+            outDir.mkdirs()
+            stoneBricksPoolDir.listFiles().each { sourceFile ->
+                new File(outDir, sourceFile.name).text =
+                    sourceFile.text.replace('stone_bricks/', "${theme}/")
+            }
+        }
+    }
+}
+
+// In 1.21+, data pack paths changed to singular nouns (structures->structure, loot_tables->loot_table).
+if (mc_version != "1.20.1") {
+    def srcResources = rootProject.file('src/main/resources/data/stoneholm')
+
+    tasks.register('generateSingularPaths') {
+        inputs.dir srcResources
+        outputs.dir new File(generatedPoolsDir, 'data/stoneholm')
+
+        doLast {
+            copy {
+                from new File(srcResources, 'structures')
+                into new File(generatedPoolsDir, 'data/stoneholm/structure')
+            }
+            copy {
+                from new File(srcResources, 'loot_tables')
+                into new File(generatedPoolsDir, 'data/stoneholm/loot_table')
+            }
+        }
+    }
+
+    processResources.dependsOn generateSingularPaths
+}
+
+sourceSets.main.resources.srcDir generatedPoolsDir
+processResources.dependsOn generateThemePools
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+               "minecraft_version": project.minecraft_version
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.deprecation = true
-
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-	it.options.release = 17
+    it.options.deprecation = true
+    it.options.release = java_version
 }
 
 java {
-	withSourcesJar()
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.toVersion(java_version)
+    targetCompatibility = JavaVersion.toVersion(java_version)
 }
 
 jar {
-	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
-	}
+    from("LICENSE") {
+        rename { "${it}_${project.archives_base_name}" }
+    }
 }
 
-// configure the maven publication
 publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
-		}
-	}
-
-	repositories {
-	}
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {}
 }

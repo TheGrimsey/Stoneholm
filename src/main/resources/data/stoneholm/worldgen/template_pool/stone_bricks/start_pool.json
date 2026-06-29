@@ -1,5 +1,5 @@
 {
-  "name": "stoneholm:start_pool",
+  "name": "stoneholm:stone_bricks/start_pool",
   "fallback": "stoneholm:stone_bricks/end_cap",
 
   "elements": [
@@ -61,6 +61,15 @@
       "weight": 2,
       "element": {
         "location": "stoneholm:entrace/tip/garden",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "stoneholm:entrace/tip/hades",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

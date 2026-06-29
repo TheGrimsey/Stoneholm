@@ -1,0 +1,16 @@
+{
+  "structures": [
+    {
+      "structure": "stoneholm:underground_village_deepslate",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 8699778,
+
+    "spacing": 32,
+    "separation": 8,
+
+    "type": "minecraft:random_spread"
+  }
+}

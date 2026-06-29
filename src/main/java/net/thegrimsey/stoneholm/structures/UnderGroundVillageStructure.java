@@ -1,6 +1,10 @@
 package net.thegrimsey.stoneholm.structures;
 
+//? if >=1.21 {
+/*import com.mojang.serialization.MapCodec;*/
+//?} else {
 import com.mojang.serialization.Codec;
+//?}
 import net.minecraft.block.*;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.structure.StructurePiecesList;
@@ -21,9 +25,11 @@ import net.thegrimsey.stoneholm.Stoneholm;
 import java.util.Optional;
 
 public class UnderGroundVillageStructure extends Structure {
+    //? if >=1.21 {
+    /*public static final MapCodec<UnderGroundVillageStructure> CODEC = createCodec(UnderGroundVillageStructure::new);*/
+    //?} else {
     public static final Codec<Structure> CODEC = createCodec(UnderGroundVillageStructure::new);
-    public static final Identifier START_POOL = new Identifier(Stoneholm.MODID, "stone_bricks/start_pool");
-
+    //?}
     static final Direction[] directions = new Direction[] {
             Direction.NORTH,
             Direction.SOUTH,
@@ -49,7 +55,7 @@ public class UnderGroundVillageStructure extends Structure {
         // Position, set Y to 1 to offset height up.
         BlockPos blockPos = new BlockPos(x, 0, z);
 
-        return StoneholmGenerator.generate(context, blockPos);
+        return StoneholmGenerator.generate(context, blockPos, BlockSet.STONE_BRICKS);
     }
 
     final static Block[] BARS = {

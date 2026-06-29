@@ -2,11 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 1.0,
-        "max": 3.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": { "min": 2.0, "max": 4.0, "type": "minecraft:uniform" },
       "entries": [
         {
           "type": "minecraft:item",
@@ -14,11 +10,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:redstone"
@@ -29,29 +21,21 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 4.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:repeater"
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
+          "weight": 3,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
-          "name": "minecraft:copper_ingot"
+          "name": "minecraft:comparator"
         },
         {
           "type": "minecraft:item",
@@ -59,11 +43,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 2.0, "max": 10.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:copper_ingot"
@@ -74,11 +54,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:hopper"
@@ -89,11 +65,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:observer"
@@ -104,11 +76,18 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:piston"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:dispenser"
@@ -119,11 +98,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:dropper"
@@ -134,11 +109,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:slime_block"

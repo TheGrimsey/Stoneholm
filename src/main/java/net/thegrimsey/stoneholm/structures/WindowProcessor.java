@@ -1,6 +1,10 @@
 package net.thegrimsey.stoneholm.structures;
 
+//? if >=1.21 {
+/*import com.mojang.serialization.MapCodec;*/
+//?} else {
 import com.mojang.serialization.Codec;
+//?}
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalConnectingBlock;
@@ -18,7 +22,11 @@ import net.thegrimsey.stoneholm.Stoneholm;
 import org.jetbrains.annotations.Nullable;
 
 public class WindowProcessor extends StructureProcessor {
+    //? if >=1.21 {
+    /*public static final MapCodec<WindowProcessor> CODEC = MapCodec.unit(new WindowProcessor());*/
+    //?} else {
     public static final Codec<WindowProcessor> CODEC = Codec.unit(WindowProcessor::new);
+    //?}
 
     @Nullable
     @Override

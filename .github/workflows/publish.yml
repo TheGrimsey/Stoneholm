@@ -1,0 +1,51 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - mc_version: '1.20.1'
+            java: 17
+          - mc_version: '1.21.1'
+            java: 21
+          - mc_version: '1.21.4'
+            java: 21
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build ${{ matrix.mc_version }}
+        run: ./gradlew :${{ matrix.mc_version }}:build
+
+      - name: Publish to Modrinth and CurseForge
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: ${{ secrets.MODRINTH_PROJECT_ID }}
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          curseforge-id: ${{ secrets.CURSEFORGE_PROJECT_ID }}
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          files: versions/${{ matrix.mc_version }}/build/libs/!(*-@(sources|dev)).jar
+          game-versions: ${{ matrix.mc_version }}
+          loaders: fabric
+          version: ${{ github.ref_name }}+${{ matrix.mc_version }}
+          name: Stoneholm ${{ github.ref_name }} for ${{ matrix.mc_version }}
+          changelog-file: CHANGELOG.md

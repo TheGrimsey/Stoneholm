@@ -2,36 +2,73 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 2.0,
-        "max": 5.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": { "min": 2.0, "max": 5.0, "type": "minecraft:uniform" },
       "entries": [
         {
           "type": "minecraft:item",
           "weight": 3,
           "name": "minecraft:hay_block"
         },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "minecraft:lead"
-        },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:lead" },
         {
           "type": "minecraft:item",
           "weight": 5,
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 6.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 6.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:wheat"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 4.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:apple"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 4.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:carrot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:golden_carrot"
+        },
+        { "type": "minecraft:item", "weight": 2, "name": "minecraft:saddle" },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "minecraft:iron_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "minecraft:golden_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:chest"
         }
       ]
     }

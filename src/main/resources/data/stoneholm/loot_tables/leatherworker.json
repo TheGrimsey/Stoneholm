@@ -3,21 +3,30 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "rolls": { "type": "minecraft:uniform", "max": 5.0, "min": 2.0 },
       "entries": [
         {
           "type": "minecraft:item",
           "functions": [
             {
               "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
               "function": "minecraft:set_count"
             }
           ],
           "name": "minecraft:leather"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "add": false,
+              "count": { "type": "minecraft:uniform", "max": 4.0, "min": 1.0 },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:rabbit_hide"
         },
         {
           "type": "minecraft:item",
@@ -36,50 +45,58 @@
         },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 4.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "minecraft:bread",
-          "weight": 5
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:leather_leggings",
           "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:saddle"
+          "weight": 5,
+          "functions": [
+            {
+              "add": false,
+              "count": { "type": "minecraft:uniform", "max": 4.0, "min": 1.0 },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:bread"
         },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "functions": [
+            {
+              "add": false,
+              "count": { "type": "minecraft:uniform", "max": 2.0, "min": 1.0 },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:pumpkin_pie"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "functions": [
+            {
+              "add": false,
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:apple"
+        },
+        { "type": "minecraft:item", "name": "minecraft:saddle" },
         {
           "type": "minecraft:item",
           "functions": [
             {
               "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 4.0,
-                "min": 1.0
-              },
+              "count": { "type": "minecraft:uniform", "max": 4.0, "min": 1.0 },
               "function": "minecraft:set_count"
             }
           ],
           "name": "minecraft:emerald"
         }
-      ],
-      "rolls": {
-        "type": "minecraft:uniform",
-        "max": 5.0,
-        "min": 1.0
-      }
+      ]
     }
   ]
 }

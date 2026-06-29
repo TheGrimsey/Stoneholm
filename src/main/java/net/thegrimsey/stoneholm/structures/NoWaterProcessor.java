@@ -1,6 +1,10 @@
 package net.thegrimsey.stoneholm.structures;
 
+//? if >=1.21 {
+/*import com.mojang.serialization.MapCodec;*/
+//?} else {
 import com.mojang.serialization.Codec;
+//?}
 import net.minecraft.state.property.Properties;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
@@ -13,7 +17,11 @@ import net.thegrimsey.stoneholm.Stoneholm;
 import org.jetbrains.annotations.Nullable;
 
 public class NoWaterProcessor extends StructureProcessor {
+    //? if >=1.21 {
+    /*public static final MapCodec<NoWaterProcessor> CODEC = MapCodec.unit(new NoWaterProcessor());*/
+    //?} else {
     public static final Codec<NoWaterProcessor> CODEC = Codec.unit(NoWaterProcessor::new);
+    //?}
 
     @Nullable
     @Override

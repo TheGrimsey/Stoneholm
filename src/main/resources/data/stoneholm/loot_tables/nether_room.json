@@ -2,11 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 1.0,
-        "max": 3.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": { "min": 2.0, "max": 4.0, "type": "minecraft:uniform" },
       "entries": [
         {
           "type": "minecraft:item",
@@ -14,14 +10,10 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 4.0, "max": 16.0, "type": "minecraft:uniform" }
             }
           ],
-          "name": "minecraft:netherrack"
+          "name": "minecraft:nether_brick"
         },
         {
           "type": "minecraft:item",
@@ -29,11 +21,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:obsidian"
@@ -44,27 +32,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:soul_sand"
-        },
-
-        {
-          "type": "minecraft:item",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:nether_wart"
@@ -75,14 +43,75 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:blaze_rod"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:magma_cream"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 4.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:fire_charge"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:wither_rose"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:warped_fungus"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "minecraft:ghast_tear"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:ancient_debris"
         }
       ]
     }

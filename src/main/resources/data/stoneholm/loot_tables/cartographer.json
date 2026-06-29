@@ -2,11 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 1.0,
-        "max": 3.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": { "min": 2.0, "max": 4.0, "type": "minecraft:uniform" },
       "entries": [
         {
           "type": "minecraft:item",
@@ -14,11 +10,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 3.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:map"
@@ -29,19 +21,24 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 5.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:paper"
         },
+        { "type": "minecraft:item", "weight": 5, "name": "minecraft:compass" },
+        { "type": "minecraft:item", "weight": 3, "name": "minecraft:clock" },
+        { "type": "minecraft:item", "weight": 1, "name": "minecraft:spyglass" },
         {
           "type": "minecraft:item",
           "weight": 5,
-          "name": "minecraft:compass"
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 2.0, "max": 6.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:lapis_lazuli"
         },
         {
           "type": "minecraft:item",
@@ -49,11 +46,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:stick"

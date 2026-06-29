@@ -1,5 +1,5 @@
 {
-  "name": "stoneholm:corridors",
+  "name": "stoneholm:stone_bricks/job",
   "fallback": "stoneholm:stone_bricks/end_cap",
 
   "elements": [
@@ -160,6 +160,15 @@
       "weight": 3,
       "element": {
         "location": "stoneholm:job/mine_flipped",
+        "processors": "stoneholm:stone_bricks/decayer",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "stoneholm:job/dye_works",
         "processors": "stoneholm:stone_bricks/decayer",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

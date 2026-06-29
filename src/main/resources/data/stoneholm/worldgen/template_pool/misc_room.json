@@ -1,5 +1,5 @@
 {
-  "name": "stoneholm:corridors",
+  "name": "stoneholm:misc_room",
   "fallback": "stoneholm:stone_bricks/end_cap",
 
   "elements": [

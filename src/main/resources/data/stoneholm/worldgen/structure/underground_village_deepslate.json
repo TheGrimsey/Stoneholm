@@ -1,0 +1,14 @@
+{
+  "type": "stoneholm:deepslate_underground_village",
+
+  "start_pool": "stoneholm:deepslate/start_pool",
+  "size": 2,
+
+  "biomes": "#stoneholm:has_structure/underground_village_deepslate",
+
+  "step": "surface_structures",
+  "adapt_noise": false,
+
+  "spawn_overrides": {
+  }
+}

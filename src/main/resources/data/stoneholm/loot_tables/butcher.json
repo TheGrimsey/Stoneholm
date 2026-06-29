@@ -3,6 +3,7 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "rolls": { "type": "minecraft:uniform", "max": 5.0, "min": 2.0 },
       "entries": [
         {
           "name": "minecraft:suspicious_stew",
@@ -14,140 +15,142 @@
               "effects": [
                 {
                   "type": "minecraft:blindness",
-                  "duration": {
-                    "min": 5.0,
-                    "max": 7.0
-                  }
+                  "duration": { "min": 5.0, "max": 7.0 }
                 },
                 {
                   "type": "minecraft:poison",
-                  "duration": {
-                    "min": 10.0,
-                    "max": 20.0
-                  }
+                  "duration": { "min": 10.0, "max": 20.0 }
                 },
                 {
                   "type": "minecraft:weakness",
-                  "duration": {
-                    "min": 6.0,
-                    "max": 8.0
-                  }
+                  "duration": { "min": 6.0, "max": 8.0 }
                 },
                 {
                   "type": "minecraft:speed",
-                  "duration": {
-                    "min": 7.0,
-                    "max": 10.0
-                  }
+                  "duration": { "min": 7.0, "max": 10.0 }
                 },
                 {
                   "type": "minecraft:night_vision",
-                  "duration": {
-                    "min": 7.0,
-                    "max": 10.0
-                  }
+                  "duration": { "min": 7.0, "max": 10.0 }
                 },
                 {
                   "type": "minecraft:saturation",
-                  "duration": {
-                    "min": 7.0,
-                    "max": 10.0
-                  }
+                  "duration": { "min": 7.0, "max": 10.0 }
                 }
               ]
             }
           ]
         },
+        { "type": "minecraft:item", "name": "minecraft:emerald" },
         {
           "type": "minecraft:item",
-          "name": "minecraft:emerald"
-        },
-        {
-          "type": "minecraft:item",
+          "weight": 4,
           "functions": [
             {
               "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:porkchop",
-          "weight": 6
+          "name": "minecraft:porkchop"
         },
         {
           "type": "minecraft:item",
+          "weight": 6,
           "functions": [
             {
               "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:wheat",
-          "weight": 6
+          "name": "minecraft:cooked_porkchop"
         },
         {
           "type": "minecraft:item",
+          "weight": 4,
           "functions": [
             {
               "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:beef",
-          "weight": 6
+          "name": "minecraft:beef"
         },
         {
           "type": "minecraft:item",
+          "weight": 6,
           "functions": [
             {
               "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:mutton",
-          "weight": 6
+          "name": "minecraft:cooked_beef"
         },
         {
           "type": "minecraft:item",
+          "weight": 4,
           "functions": [
             {
               "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:coal",
-          "weight": 3
+          "name": "minecraft:mutton"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "functions": [
+            {
+              "add": false,
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:cooked_mutton"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "functions": [
+            {
+              "add": false,
+              "count": { "type": "minecraft:uniform", "max": 2.0, "min": 1.0 },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:pumpkin_pie"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "add": false,
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:wheat"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "add": false,
+              "count": { "type": "minecraft:uniform", "max": 3.0, "min": 1.0 },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:coal"
         }
-      ],
-      "rolls": {
-        "type": "minecraft:uniform",
-        "max": 5.0,
-        "min": 1.0
-      }
+      ]
     }
   ]
 }

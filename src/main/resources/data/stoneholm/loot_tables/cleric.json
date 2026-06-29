@@ -2,11 +2,7 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 1.0,
-        "max": 4.0,
-        "type": "minecraft:uniform"
-      },
+      "rolls": { "min": 2.0, "max": 5.0, "type": "minecraft:uniform" },
       "entries": [
         {
           "type": "minecraft:item",
@@ -14,11 +10,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 12.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 12.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:redstone"
@@ -29,11 +21,7 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 1.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:enchanted_golden_apple"
@@ -44,14 +32,43 @@
           "functions": [
             {
               "function": "minecraft:set_count",
-              "count": {
-                "min": 1.0,
-                "max": 6.0,
-                "type": "minecraft:uniform"
-              }
+              "count": { "min": 1.0, "max": 6.0, "type": "minecraft:uniform" }
             }
           ],
           "name": "minecraft:glow_berries"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 2.0, "max": 8.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:lapis_lazuli"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 4.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:glowstone_dust"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": { "min": 1.0, "max": 2.0, "type": "minecraft:uniform" }
+            }
+          ],
+          "name": "minecraft:experience_bottle"
         },
         {
           "type": "minecraft:item",

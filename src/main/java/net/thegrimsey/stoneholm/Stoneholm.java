@@ -19,8 +19,24 @@ import net.thegrimsey.stoneholm.util.StructurePoolUtils;
 
 public class Stoneholm implements ModInitializer {
     public static final String MODID = "stoneholm";
-    public static final Identifier UNDERGROUNDVILLAGE_IDENTIFIER = new Identifier(Stoneholm.MODID, "underground_village");
+    public static final Identifier UNDERGROUNDVILLAGE_IDENTIFIER = id("underground_village");
     public static SHConfig CONFIG;
+
+    public static Identifier id(String path) {
+        //? if >=1.21 {
+        /*return Identifier.of(MODID, path);*/
+        //?} else {
+        return new Identifier(MODID, path);
+        //?}
+    }
+
+    public static Identifier parseId(String id) {
+        //? if >=1.21 {
+        /*return Identifier.of(id);*/
+        //?} else {
+        return new Identifier(id);
+        //?}
+    }
     public static final StructureProcessorType<NoWaterProcessor> NOWATER_PROCESSOR = () -> NoWaterProcessor.CODEC;
     public static final StructureProcessorType<WindowProcessor> WINDOW_PROCESSOR = () -> WindowProcessor.CODEC;
 
@@ -34,28 +50,32 @@ public class Stoneholm implements ModInitializer {
 
         // Register structures & configured structures.
         SHStructures.registerStructureFeatures();
-        Registry.register(Registries.STRUCTURE_PROCESSOR, new Identifier(MODID, "nowater_processor"), NOWATER_PROCESSOR);
-        Registry.register(Registries.STRUCTURE_PROCESSOR, new Identifier(MODID, "window_processor"), WINDOW_PROCESSOR);
+        Registry.register(Registries.STRUCTURE_PROCESSOR, id("nowater_processor"), NOWATER_PROCESSOR);
+        Registry.register(Registries.STRUCTURE_PROCESSOR, id("window_processor"), WINDOW_PROCESSOR);
 
         ServerLifecycleEvents.SERVER_STARTING.register((MinecraftServer server) -> handleModSupport(server.getRegistryManager()));
     }
 
     void handleModSupport(DynamicRegistryManager registry)
     {
+        //? if >=1.21.4 {
+        /*Registry<StructurePool> structurePoolRegistry = registry.getOrThrow(RegistryKeys.TEMPLATE_POOL);*/
+        //?} else {
         Registry<StructurePool> structurePoolRegistry = registry.get(RegistryKeys.TEMPLATE_POOL);
+        //?}
 
         // TODO: This should really be defined in JSON or something.
 
         // MoreVillagers mod.
         if(FabricLoader.getInstance().isModLoaded("morevillagers-fabric"))
         {
-            StructurePool point_of_interest = structurePoolRegistry.get(new Identifier(MODID, "point_of_interest"));
-            StructurePool morevillagers_point_of_interest = structurePoolRegistry.get(new Identifier(MODID, "addons/morevillagers/morevillagers_point_of_interest"));
+            StructurePool point_of_interest = structurePoolRegistry.get(id("point_of_interest"));
+            StructurePool morevillagers_point_of_interest = structurePoolRegistry.get(id("addons/morevillagers/morevillagers_point_of_interest"));
 
             StructurePoolUtils.appendPool(point_of_interest, morevillagers_point_of_interest);
 
-            StructurePool abandoned_point_of_interest = structurePoolRegistry.get(new Identifier(MODID, "abandoned_point_of_interest"));
-            StructurePool morevillagers_abandoned_point_of_interest = structurePoolRegistry.get(new Identifier(MODID, "addons/morevillagers/morevillagers_abandoned_point_of_interest"));
+            StructurePool abandoned_point_of_interest = structurePoolRegistry.get(id("abandoned_point_of_interest"));
+            StructurePool morevillagers_abandoned_point_of_interest = structurePoolRegistry.get(id("addons/morevillagers/morevillagers_abandoned_point_of_interest"));
 
             StructurePoolUtils.appendPool(abandoned_point_of_interest, morevillagers_abandoned_point_of_interest);
         }

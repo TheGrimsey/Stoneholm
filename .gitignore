@@ -31,8 +31,7 @@ bin/
 # fabric
 
 run/*
-!run/saves/
-run/saves/*
-!run/saves/Buildworld/
-!run/saves/MoreVillagers/
-!run/saves/Build World 3_0/
+versions/*/run/*
+!versions/1.20.1/run/saves
+versions/1.20.1/run/saves/*/advancements
+versions/1.20.1/run/saves/*/stats
