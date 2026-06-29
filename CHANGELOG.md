@@ -2,7 +2,7 @@
 
 ## 2.1.0
 
-- Expanded the structure piece pool significantly.
+- Expanded the structure piece pool.
 - Added clutter pieces to hallways & other spaces.
 - Cisterns/Waterways will sometimes spawn in villages.
 - Added a deepslate village variant.
