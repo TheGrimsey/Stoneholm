@@ -32,7 +32,11 @@ public class NoWaterProcessor extends StructureProcessor {
         {
             boolean waterlog = (structureBlockInfoLocal.state().contains(Properties.WATERLOGGED) && structureBlockInfoLocal.state().get(Properties.WATERLOGGED));
 
+            //? if >=1.21.10 {
+            /*chunk.setBlockState(structureBlockInfoWorld.pos(), structureBlockInfoWorld.state().rotate(data.getRotation()).with(Properties.WATERLOGGED, waterlog), 0);*/
+            //?} else {
             chunk.setBlockState(structureBlockInfoWorld.pos(), structureBlockInfoWorld.state().rotate(data.getRotation()).with(Properties.WATERLOGGED, waterlog), false);
+            //?}
         }
 
         return structureBlockInfoWorld;

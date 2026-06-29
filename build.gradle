@@ -96,6 +96,7 @@ processResources {
                "java_version": project.java_version,
                "cloth_config_major": cloth_major
     }
+
 }
 
 tasks.withType(JavaCompile).configureEach {

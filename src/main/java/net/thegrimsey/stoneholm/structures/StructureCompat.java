@@ -17,11 +17,17 @@ import net.thegrimsey.stoneholm.Stoneholm;
 public class StructureCompat {
     //? if >=1.21.4 {
     /*public static BlockPos getPos(StructureTemplate.JigsawBlockInfo info) { return info.info().pos(); }
-    public static BlockState getState(StructureTemplate.JigsawBlockInfo info) { return info.info().state(); }
-    public static Identifier getPoolId(StructureTemplate.JigsawBlockInfo info) { return info.pool(); }*/
+    public static BlockState getState(StructureTemplate.JigsawBlockInfo info) { return info.info().state(); }*/
     //?} else {
     public static BlockPos getPos(StructureTemplate.StructureBlockInfo info) { return info.pos(); }
     public static BlockState getState(StructureTemplate.StructureBlockInfo info) { return info.state(); }
+    //?}
+
+    //? if >=1.21.10 {
+    /*public static Identifier getPoolId(StructureTemplate.JigsawBlockInfo info) { return info.pool().getValue(); }*/
+    //?} else if >=1.21.4 {
+    /*public static Identifier getPoolId(StructureTemplate.JigsawBlockInfo info) { return info.pool(); }*/
+    //?} else {
     public static Identifier getPoolId(StructureTemplate.StructureBlockInfo info) { return Stoneholm.parseId(info.nbt().getString("pool")); }
     //?}
 

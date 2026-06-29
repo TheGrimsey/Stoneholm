@@ -3,7 +3,7 @@ name: Publish
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
   workflow_dispatch:
 
 jobs:
@@ -12,11 +12,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - mc_version: '1.20.1'
+          - mc_version: "1.20.1"
             java: 21
-          - mc_version: '1.21.1'
+          - mc_version: "1.21.1"
             java: 21
-          - mc_version: '1.21.4'
+          - mc_version: "1.21.4"
+            java: 21
+          - mc_version: "1.21.10"
             java: 21
 
     steps:
@@ -28,7 +30,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'temurin'
+          distribution: "temurin"
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
@@ -46,6 +48,8 @@ jobs:
           files: versions/${{ matrix.mc_version }}/build/libs/!(*-@(sources|dev)).jar
           game-versions: ${{ matrix.mc_version }}
           loaders: fabric
+          dependencies: |
+            cloth-config(required){modrinth:9s6osm5g}{curseforge:348521}
           version: ${{ github.ref_name }}+${{ matrix.mc_version }}
           name: Stoneholm ${{ github.ref_name }} for ${{ matrix.mc_version }}
           changelog-file: CHANGELOG.md
