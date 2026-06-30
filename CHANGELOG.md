@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1
+
+- Fix cistern alignment issue.
+
 ## 2.1.0
 
 - Expanded the structure piece pool.
