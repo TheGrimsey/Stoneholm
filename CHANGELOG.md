@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.2
+
+- Added an multi-level cistern piece to improve variety.
+
 ## 2.1.1
 
 - Fix cistern alignment issue.
